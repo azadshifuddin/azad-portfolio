@@ -2558,3 +2558,48 @@ body {
     color: #38d9ff;
 }
 
+/* =====================================
+   SOCIAL MEDIA LOGOS - SAME SIZE
+===================================== */
+
+.contact .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Make all social logos equal */
+.contact .social-icon svg,
+.contact .social-icon i,
+.contact .social-icon img {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Facebook letter and X logo */
+.contact .social-icon .google-letter,
+.contact .social-icon .x-logo {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 28px !important;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0 !important;
+    flex-shrink: 0;
+}
+
+/* Keep logos centered */
+.contact .social-icon {
+    gap: 10px;
+}
+
