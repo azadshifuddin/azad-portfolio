@@ -2422,6 +2422,62 @@ body {
         transform: none;
     }
 }
+/* =====================================================
+   22. FINAL CONTACT DESIGN POLISH
+   Paste at the VERY END of style.css
+   ===================================================== */
 
+.contact {
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgba(56, 217, 255, 0.09),
+            transparent 58%
+        ),
+        linear-gradient(135deg, #080d17, #0b1524 65%, #07101d);
+}
+
+.contact .social-eyebrow {
+    color: #38d9ff;
+}
+
+.contact .social-eyebrow::before,
+.contact .social-eyebrow::after {
+    background: linear-gradient(90deg, transparent, #38d9ff);
+}
+
+.contact .social-title span {
+    color: #38d9ff;
+}
+
+.contact .social-icon {
+    border-color: rgba(56, 217, 255, 0.55);
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(56, 217, 255, 0.06);
+}
+
+.contact .social-icon:hover {
+    box-shadow:
+        0 16px 32px rgba(0, 0, 0, 0.30),
+        0 0 24px rgba(56, 217, 255, 0.16);
+}
+
+.contact .social-footer span {
+    color: #38d9ff;
+}
+
+.social-shape {
+    background: linear-gradient(135deg, #1177ad, #38d9ff);
+    opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact .social-icon,
+    .contact .social-icon:hover {
+        transition: none;
+        transform: none;
+    }
+}
 
 
