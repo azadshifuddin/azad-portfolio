@@ -2605,9 +2605,10 @@ body {
 
 
 
+
 /* =====================================================
-   23. FINAL SOCIAL BUTTON FIX
-   LinkedIn, Facebook, X, Instagram and YouTube
+   23. FINAL SOCIAL ICON FIX
+   Matches the current HTML classes exactly
    ===================================================== */
 
 .contact .social-icons {
@@ -2616,167 +2617,134 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
+    margin: 45px auto 30px;
 }
 
-.contact .social-icons .social-icon {
-    width: 58px;
-    height: 58px;
-    min-width: 58px;
-    max-width: 58px;
-    min-height: 58px;
-    max-height: 58px;
-    flex: 0 0 58px;
+.contact .social-icons > a.social-icon {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    min-height: 54px;
+    flex: 0 0 54px;
+
     padding: 0;
-    border: 1px solid;
-    border-radius: 13px;
-    color: #ffffff;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
-    transition: transform 0.3s ease,
-                box-shadow 0.3s ease,
-                filter 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+    line-height: 1;
 }
 
-/* All SVG icons: same size */
-.contact .social-icons .social-icon svg {
+/* X, Instagram and YouTube SVG logos */
+.contact .social-icons > a.social-icon svg {
     display: block;
-    width: 23px;
-    height: 23px;
-    min-width: 23px;
-    min-height: 23px;
-    max-width: 23px;
-    max-height: 23px;
-    flex-shrink: 0;
+    width: 21px;
+    height: 21px;
+    min-width: 21px;
+    min-height: 21px;
+    max-width: 21px;
+    max-height: 21px;
+    flex: 0 0 21px;
+}
+
+/* LinkedIn: text is "in" in the current HTML */
+.contact .social-icons .linkedin-logo {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    transform: none;
+}
+
+/* Facebook: text is "f" in the current HTML */
+.contact .social-icons .facebook-logo {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateY(2px);
 }
 
 /* LinkedIn */
-.contact .social-icons .social-icon.linkedin {
+.contact .social-icons > a.linkedin {
     background: #0A66C2;
-    border-color: #328bff;
-    transform: rotate(-6deg);
-}
-
-.contact .social-icons .linkedin-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 23px;
-    font-weight: 700;
-    line-height: 1;
+    border: 1px solid #328bff;
+    transform: none;
 }
 
 /* Facebook */
-.contact .social-icons .social-icon.facebook {
+.contact .social-icons > a.facebook {
     background: #1877F2;
-    border-color: #1877F2;
-    transform: rotate(-6deg);
-}
-
-.contact .social-icons .facebook-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 35px;
-    font-weight: 700;
-    line-height: 1;
-    transform: translateY(3px);
+    border: 1px solid #328bff;
+    transform: none;
 }
 
 /* X */
-.contact .social-icons .social-icon.x-twitter {
-    background: transparent;
-    border-color: #20d9ff;
-    transform: rotate(-6deg);
+.contact .social-icons > a.x-twitter {
+    background: #101a29;
+    border: 1px solid #38d9ff;
+    transform: none;
 }
 
 /* Instagram */
-.contact .social-icons .social-icon.instagram {
-    color: #ffffff;
+.contact .social-icons > a.instagram {
     background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-    border-color: #d946a8;
-    transform: rotate(-6deg);
+    border: 1px solid #d946a8;
+    transform: none;
 }
 
 /* YouTube */
-.contact .social-icons .social-icon.youtube {
-    color: #ffffff;
+.contact .social-icons > a.youtube {
     background: #FF0033;
-    border-color: #FF0033;
-    transform: rotate(-6deg);
+    border: 1px solid #FF0033;
+    transform: none;
 }
 
-/* Hover effects */
-.contact .social-icons .social-icon:hover {
-    transform: translateY(-5px) rotate(0deg) scale(1.03);
+/* Hover */
+.contact .social-icons > a.social-icon:hover {
+    transform: translateY(-4px);
     filter: brightness(1.08);
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28);
 }
 
-.contact .social-icons .social-icon.x-twitter:hover {
-    background: rgba(32, 217, 255, 0.10);
-    border-color: #38d9ff;
-}
-
-.contact .social-icons .social-icon.linkedin:hover {
-    background: #004182;
-}
-
-.contact .social-icons .social-icon.facebook:hover {
-    background: #0866FF;
-}
-
-.contact .social-icons .social-icon.youtube:hover {
-    background: #cc0029;
-}
-
-/* Mobile */
 @media (max-width: 480px) {
     .contact .social-icons {
         gap: 12px;
     }
 
-    .contact .social-icons .social-icon {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        max-width: 48px;
-        min-height: 48px;
-        max-height: 48px;
-        flex-basis: 48px;
-        border-radius: 11px;
+    .contact .social-icons > a.social-icon {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        min-height: 46px;
+        flex-basis: 46px;
+        border-radius: 10px;
     }
 
-    .contact .social-icons .social-icon svg {
-        width: 21px;
-        height: 21px;
-        min-width: 21px;
-        min-height: 21px;
-        max-width: 21px;
-        max-height: 21px;
+    .contact .social-icons > a.social-icon svg {
+        width: 19px;
+        height: 19px;
+        min-width: 19px;
+        min-height: 19px;
+        max-width: 19px;
+        max-height: 19px;
+        flex-basis: 19px;
     }
 
     .contact .social-icons .linkedin-logo {
-        font-size: 21px;
+        font-size: 18px;
     }
 
     .contact .social-icons .facebook-logo {
-        font-size: 30px;
-    }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .contact .social-icons .social-icon,
-    .contact .social-icons .social-icon:hover {
-        transition: none;
-        transform: none;
+        font-size: 25px;
     }
 }
 
