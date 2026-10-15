@@ -2604,11 +2604,9 @@ body {
 }
 
 
-
-
 /* =====================================================
-   23. FINAL SOCIAL ICON FIX
-   Matches the current HTML classes exactly
+   23. FINAL SOCIAL BUTTON FIX
+   Email, LinkedIn, Facebook and X: equal dimensions
    ===================================================== */
 
 .contact .social-icons {
@@ -2616,137 +2614,206 @@ body {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 16px;
-    margin: 45px auto 30px;
+    gap: 20px;
 }
 
-.contact .social-icons > a.social-icon {
+/* Equal outer dimensions for all four buttons */
+.contact .social-icons .social-icon {
+    width: 68px;
+    height: 68px;
+    min-width: 68px;
+    max-width: 68px;
+    flex: 0 0 68px;
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    width: 54px;
-    height: 54px;
-    min-width: 54px;
-    min-height: 54px;
-    flex: 0 0 54px;
-
     padding: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    line-height: 1;
+    border: 1px solid;
+    border-radius: 15px;
+    color: #ffffff;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
-/* X, Instagram and YouTube SVG logos */
-.contact .social-icons > a.social-icon svg {
-    display: block;
-    width: 21px;
-    height: 21px;
-    min-width: 21px;
-    min-height: 21px;
-    max-width: 21px;
-    max-height: 21px;
-    flex: 0 0 21px;
+/* Email */
+.contact .social-icons .social-icon.email {
+    color: #ffffff;
+    background: transparent;
+    border-color: #20d9ff;
+    transform: rotate(-8deg);
 }
 
-/* LinkedIn: text is "in" in the current HTML */
+.contact .social-icons .social-icon.email svg {
+    width: 23px;
+    height: 23px;
+    min-width: 23px;
+    min-height: 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* LinkedIn */
+.contact .social-icons .social-icon.linkedin {
+    color: #ffffff;
+    background: #0A66C2;
+    border-color: #328bff;
+    transform: rotate(-8deg);
+}
+
 .contact .social-icons .linkedin-logo {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1;
-    transform: none;
-}
-
-/* Facebook: text is "f" in the current HTML */
-.contact .social-icons .facebook-logo {
-    display: inline-block;
-    width: auto;
-    height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 29px;
     font-weight: 700;
     line-height: 1;
-    transform: translateY(2px);
+    letter-spacing: -1px;
 }
 
-/* LinkedIn */
-.contact .social-icons > a.linkedin {
-    background: #0A66C2;
-    border: 1px solid #328bff;
-    transform: none;
-}
-
-/* Facebook */
-.contact .social-icons > a.facebook {
+/* Facebook: official blue background and white f */
+.contact .social-icons .social-icon.facebook {
+    color: #ffffff;
     background: #1877F2;
-    border: 1px solid #328bff;
-    transform: none;
+    border-color: #1877F2;
+    transform: rotate(-8deg);
+}
+
+.contact .social-icons .facebook-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 40px;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 49px;
+    font-weight: 700;
+    line-height: 1;
+    transform: translate(1px, 5px);
 }
 
 /* X */
-.contact .social-icons > a.x-twitter {
-    background: #101a29;
-    border: 1px solid #38d9ff;
-    transform: none;
+.contact .social-icons .social-icon.x-twitter {
+    color: #ffffff;
+    background: transparent;
+    border-color: #20d9ff;
+    transform: rotate(-8deg);
 }
 
-/* Instagram */
-.contact .social-icons > a.instagram {
-    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-    border: 1px solid #d946a8;
-    transform: none;
+.contact .social-icons .social-icon.x-twitter svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    fill: currentColor;
 }
 
-/* YouTube */
-.contact .social-icons > a.youtube {
-    background: #FF0033;
-    border: 1px solid #FF0033;
-    transform: none;
-}
-
-/* Hover */
-.contact .social-icons > a.social-icon:hover {
-    transform: translateY(-4px);
+/* Consistent hover animation */
+.contact .social-icons .social-icon.email:hover,
+.contact .social-icons .social-icon.linkedin:hover,
+.contact .social-icons .social-icon.facebook:hover,
+.contact .social-icons .social-icon.x-twitter:hover {
+    transform: translateY(-7px) rotate(0deg) scale(1.03);
     filter: brightness(1.08);
 }
 
-@media (max-width: 480px) {
+.contact .social-icons .social-icon.email:hover,
+.contact .social-icons .social-icon.x-twitter:hover {
+    background: rgba(32, 217, 255, 0.08);
+    border-color: #38d9ff;
+}
+
+.contact .social-icons .social-icon.linkedin:hover {
+    background: #004182;
+    border-color: #328bff;
+}
+
+.contact .social-icons .social-icon.facebook:hover {
+    background: #0866FF;
+    border-color: #0866FF;
+    box-shadow: 0 12px 28px rgba(8, 102, 255, 0.28);
+}
+
+/* Tablet */
+@media (max-width: 760px) {
+    .contact .social-icons {
+        gap: 16px;
+    }
+
+    .contact .social-icons .social-icon {
+        width: 62px;
+        height: 62px;
+        min-width: 62px;
+        max-width: 62px;
+        flex-basis: 62px;
+        border-radius: 13px;
+    }
+
+    .contact .social-icons .social-icon.email svg,
+    .contact .social-icons .social-icon.x-twitter svg {
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+        min-height: 22px;
+    }
+
+    .contact .social-icons .linkedin-logo {
+        font-size: 26px;
+    }
+
+    .contact .social-icons .facebook-logo {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 420px) {
     .contact .social-icons {
         gap: 12px;
     }
 
-    .contact .social-icons > a.social-icon {
-        width: 46px;
-        height: 46px;
-        min-width: 46px;
-        min-height: 46px;
-        flex-basis: 46px;
-        border-radius: 10px;
+    .contact .social-icons .social-icon {
+        width: 58px;
+        height: 58px;
+        min-width: 58px;
+        max-width: 58px;
+        flex-basis: 58px;
+        border-radius: 12px;
     }
 
-    .contact .social-icons > a.social-icon svg {
-        width: 19px;
-        height: 19px;
-        min-width: 19px;
-        min-height: 19px;
-        max-width: 19px;
-        max-height: 19px;
-        flex-basis: 19px;
+    .contact .social-icons .social-icon.email svg,
+    .contact .social-icons .social-icon.x-twitter svg {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        min-height: 20px;
     }
 
     .contact .social-icons .linkedin-logo {
-        font-size: 18px;
+        font-size: 24px;
     }
 
     .contact .social-icons .facebook-logo {
-        font-size: 25px;
+        font-size: 42px;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .contact .social-icons .social-icon,
+    .contact .social-icons .social-icon:hover {
+        transition: none;
+        transform: none;
+    }
+}
+
 
 /* =========================================================
    24. FINAL RESPONSIVE & ACCESSIBILITY PATCH
@@ -3287,4 +3354,3 @@ html.js-enabled .reveal.visible {
 @media (prefers-reduced-motion: reduce) {
     #floatingContact.floating-contact { transition: none; }
 }
-
