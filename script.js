@@ -1,204 +1,517 @@
 /* =========================================================
-   AZAD SHIFUDDIN PORTFOLIO
-   Main JavaScript — responsive navigation and interactions
+   AZAD ENGINEER PORTFOLIO
+   Main JavaScript
    ========================================================= */
-(() => {
-    "use strict";
 
-    const $ = (selector, root = document) => root.querySelector(selector);
-    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-    const header = $("#header");
-    const menuToggle = $("#menuToggle");
-    const navMenu = $("#navMenu");
-    const navLinks = $$(".nav-link");
-    const backToTop = $("#backToTop");
-    const currentYear = $("#currentYear");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* =========================================================
+   01. DOM ELEMENTS
+   ========================================================= */
 
-    // Mark JS as initialized; CSS uses this class to enable reveal animations safely.
-    document.documentElement.classList.add("js-enabled");
+const header = document.getElementById("header");
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+const navLinks = document.querySelectorAll(".nav-link");
+const backToTop = document.getElementById("backToTop");
+const currentYear = document.getElementById("currentYear");
 
-    // Footer year.
-    if (currentYear) {
-        currentYear.textContent = String(new Date().getFullYear());
-    }
 
-    // Mobile navigation.
-    const setMenuOpen = (open) => {
-        if (!menuToggle || !navMenu) return;
-        navMenu.classList.toggle("active", open);
-        menuToggle.classList.toggle("open", open);
-        menuToggle.setAttribute("aria-expanded", String(open));
-        menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
-        document.body.classList.toggle("menu-open", open);
-    };
+/* =========================================================
+   02. MOBILE MENU
+   ========================================================= */
 
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", (event) => {
-            event.stopPropagation();
-            setMenuOpen(!navMenu.classList.contains("active"));
-        });
+if (menuToggle && navMenu) {
 
-        navLinks.forEach((link) => {
-            link.addEventListener("click", () => setMenuOpen(false));
-        });
+    menuToggle.addEventListener("click", () => {
 
-        document.addEventListener("click", (event) => {
-            if (!navMenu.classList.contains("active")) return;
-            if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-                setMenuOpen(false);
-            }
-        });
+        const isOpen = navMenu.classList.toggle("active");
 
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") setMenuOpen(false);
-        });
+        menuToggle.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
 
-        window.addEventListener("resize", () => {
-            if (window.innerWidth > 760) setMenuOpen(false);
-        });
-    }
+        menuToggle.classList.toggle("open", isOpen);
 
-    // Header style and back-to-top visibility.
-    const updateScrollUI = () => {
-        const y = window.scrollY || document.documentElement.scrollTop || 0;
-        if (header) header.classList.toggle("scrolled", y > 20);
-        if (backToTop) {
-            backToTop.classList.toggle("show", y > 450);
-            backToTop.setAttribute("aria-hidden", String(y <= 450));
-        }
-    };
-
-    window.addEventListener("scroll", updateScrollUI, { passive: true });
-    updateScrollUI();
-
-    if (backToTop) {
-        backToTop.addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
-        });
-    }
-
-    // Active navigation link based on visible section.
-    const sections = $$("main section[id]");
-    if ("IntersectionObserver" in window && sections.length) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                const activeId = entry.target.id;
-                navLinks.forEach((link) => {
-                    const active = link.getAttribute("href") === `#${activeId}`;
-                    link.classList.toggle("active", active);
-                    if (active) link.setAttribute("aria-current", "location");
-                    else link.removeAttribute("aria-current");
-                });
-            });
-        }, {
-            rootMargin: "-35% 0px -55% 0px",
-            threshold: 0
-        });
-
-        sections.forEach((section) => sectionObserver.observe(section));
-    }
-
-    // Scroll reveal. If IntersectionObserver is unsupported, show content immediately.
-    const revealTargets = $$(
-        ".section-heading, .hero-content, .hero-visual, .highlight-card, " +
-        ".timeline-item, .skill-category, .project-card, .education-card, " +
-        ".expertise-box, .social-container"
-    );
-
-    revealTargets.forEach((element) => element.classList.add("reveal"));
-
-    if ("IntersectionObserver" in window && !reducedMotion) {
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-            });
-        }, {
-            threshold: 0.08,
-            rootMargin: "0px 0px -35px 0px"
-        });
-
-        revealTargets.forEach((element) => revealObserver.observe(element));
-    } else {
-        revealTargets.forEach((element) => element.classList.add("visible"));
-    }
-
-    // Smooth in-page navigation fallback for browsers that ignore CSS scroll behavior.
-    $$('a[href^="#"]').forEach((link) => {
-        link.addEventListener("click", (event) => {
-            const href = link.getAttribute("href");
-            if (!href || href === "#") return;
-            const target = $(href);
-            if (!target) return;
-            event.preventDefault();
-            target.scrollIntoView({
-                behavior: reducedMotion ? "auto" : "smooth",
-                block: "start"
-            });
-            if (window.history && window.history.replaceState) {
-                window.history.replaceState(null, "", href);
-            }
-        });
     });
 
-    // Keep a broken profile image from showing a broken-image icon.
-    const profileImage = $(".profile-image");
-    if (profileImage) {
-        profileImage.addEventListener("error", () => {
+}
+
+
+/* =========================================================
+   03. CLOSE MOBILE MENU
+      When a navigation link is clicked
+   ========================================================= */
+
+navLinks.forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+        if (navMenu) {
+            navMenu.classList.remove("active");
+        }
+
+        if (menuToggle) {
+            menuToggle.classList.remove("open");
+            menuToggle.setAttribute("aria-expanded", "false");
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   04. CLOSE MENU WHEN CLICKING OUTSIDE
+   ========================================================= */
+
+document.addEventListener("click", (event) => {
+
+    if (!navMenu || !menuToggle) {
+        return;
+    }
+
+    const clickedInsideMenu = navMenu.contains(event.target);
+    const clickedToggle = menuToggle.contains(event.target);
+
+    if (
+        !clickedInsideMenu &&
+        !clickedToggle &&
+        navMenu.classList.contains("active")
+    ) {
+
+        navMenu.classList.remove("active");
+
+        menuToggle.classList.remove("open");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+});
+
+
+/* =========================================================
+   05. NAVBAR SCROLL EFFECT
+   ========================================================= */
+
+function handleHeaderScroll() {
+
+    if (!header) {
+        return;
+    }
+
+    if (window.scrollY > 40) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+}
+
+window.addEventListener(
+    "scroll",
+    handleHeaderScroll,
+    { passive: true }
+);
+
+handleHeaderScroll();
+
+
+/* =========================================================
+   06. ACTIVE NAVIGATION LINK
+   ========================================================= */
+
+const sections = document.querySelectorAll("section[id]");
+
+function updateActiveNavigation() {
+
+    const scrollPosition =
+        window.scrollY +
+        window.innerHeight * 0.35;
+
+    let currentSection = "";
+
+    sections.forEach((section) => {
+
+        const sectionTop = section.offsetTop;
+
+        const sectionHeight = section.offsetHeight;
+
+        if (
+            scrollPosition >= sectionTop &&
+            scrollPosition < sectionTop + sectionHeight
+        ) {
+
+            currentSection = section.getAttribute("id");
+
+        }
+
+    });
+
+
+    navLinks.forEach((link) => {
+
+        link.classList.remove("active");
+
+        const target =
+            link.getAttribute("href");
+
+        if (target === `#${currentSection}`) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+}
+
+window.addEventListener(
+    "scroll",
+    updateActiveNavigation,
+    { passive: true }
+);
+
+window.addEventListener(
+    "resize",
+    updateActiveNavigation
+);
+
+updateActiveNavigation();
+
+
+/* =========================================================
+   07. BACK TO TOP BUTTON
+   ========================================================= */
+
+function handleBackToTop() {
+
+    if (!backToTop) {
+        return;
+    }
+
+    if (window.scrollY > 600) {
+
+        backToTop.classList.add("show");
+
+    } else {
+
+        backToTop.classList.remove("show");
+
+    }
+
+}
+
+window.addEventListener(
+    "scroll",
+    handleBackToTop,
+    { passive: true }
+);
+
+handleBackToTop();
+
+
+if (backToTop) {
+
+    backToTop.addEventListener("click", () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   08. SCROLL REVEAL ANIMATION
+   ========================================================= */
+
+/*
+   Add .reveal automatically to important sections/cards.
+*/
+
+const revealElements = document.querySelectorAll(
+    ".section-heading, " +
+    ".about-text, " +
+    ".highlight-card, " +
+    ".timeline-item, " +
+    ".skill-category, " +
+    ".project-card, " +
+    ".education-card, " +
+    ".expertise-box, " +
+    ".contact-intro, " +
+    ".contact-details"
+);
+
+
+revealElements.forEach((element) => {
+
+    element.classList.add("reveal");
+
+});
+
+
+const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.12,
+        rootMargin: "0px 0px -50px 0px"
+    }
+);
+
+
+revealElements.forEach((element) => {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================================================
+   09. CURRENT YEAR
+   ========================================================= */
+
+if (currentYear) {
+
+    currentYear.textContent =
+        new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   10. SMOOTH ANCHOR SCROLL
+   ========================================================= */
+
+document.querySelectorAll(
+    'a[href^="#"]'
+).forEach((anchor) => {
+
+    anchor.addEventListener("click", function (event) {
+
+        const targetId =
+            this.getAttribute("href");
+
+        if (
+            !targetId ||
+            targetId === "#"
+        ) {
+            return;
+        }
+
+        const target =
+            document.querySelector(targetId);
+
+        if (!target) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const headerHeight =
+            header
+                ? header.offsetHeight
+                : 0;
+
+        const targetPosition =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            headerHeight;
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth"
+        });
+
+    });
+
+});
+
+
+/* =========================================================
+   11. PROFILE IMAGE FALLBACK
+   ========================================================= */
+
+/*
+   If profile.jpg is missing or cannot load,
+   the image will receive a subtle fallback.
+*/
+
+const profileImage =
+    document.querySelector(".profile-image");
+
+if (profileImage) {
+
+    profileImage.addEventListener(
+        "error",
+        () => {
+
             profileImage.style.display = "none";
-            const wrapper = profileImage.closest(".profile-image-wrapper");
+
+            const wrapper =
+                profileImage.parentElement;
+
             if (wrapper) {
-                wrapper.setAttribute("role", "img");
-                wrapper.setAttribute("aria-label", "Profile image unavailable");
+
+                wrapper.classList.add(
+                    "image-missing"
+                );
+
             }
-        }, { once: true });
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   12. CV DOWNLOAD CHECK
+   ========================================================= */
+
+const cvLinks =
+    document.querySelectorAll(
+        'a[href="assets/cv.pdf"]'
+    );
+
+cvLinks.forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+        console.log(
+            "CV download requested."
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   13. KEYBOARD ACCESSIBILITY
+   ========================================================= */
+
+document.addEventListener("keydown", (event) => {
+
+    /*
+       ESC closes mobile navigation
+    */
+
+    if (event.key === "Escape") {
+
+        if (
+            navMenu &&
+            navMenu.classList.contains("active")
+        ) {
+
+            navMenu.classList.remove("active");
+
+        }
+
+        if (menuToggle) {
+
+            menuToggle.classList.remove("open");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
     }
 
-    // CV link is a regular local download; avoid intercepting it with JavaScript.
+});
 
-    // Contact popup. Kept in this IIFE to avoid duplicate event handlers.
-    const contactToggle = $("#contactToggle");
-    const floatingContact = $("#floatingContact");
-    const contactClose = $("#contactClose");
 
-    const closeContactPopup = () => {
-        if (!contactToggle || !floatingContact) return;
-        floatingContact.classList.remove("active");
-        floatingContact.setAttribute("aria-hidden", "true");
-        contactToggle.setAttribute("aria-expanded", "false");
-    };
+/* =========================================================
+   14. PAGE LOAD
+   ========================================================= */
 
-    if (contactToggle && floatingContact) {
-        contactToggle.addEventListener("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            const shouldOpen = !floatingContact.classList.contains("active");
-            if (shouldOpen) {
-                setMenuOpen(false);
-                floatingContact.classList.add("active");
-                floatingContact.setAttribute("aria-hidden", "false");
-                contactToggle.setAttribute("aria-expanded", "true");
-            } else {
-                closeContactPopup();
-            }
-        });
+window.addEventListener("load", () => {
 
-        floatingContact.addEventListener("click", (event) => event.stopPropagation());
-        document.addEventListener("click", (event) => {
-            if (floatingContact.classList.contains("active") &&
-                !floatingContact.contains(event.target) &&
-                !contactToggle.contains(event.target)) {
-                closeContactPopup();
-            }
-        });
-        if (contactClose) contactClose.addEventListener("click", closeContactPopup);
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") closeContactPopup();
-        });
-        closeContactPopup();
-    }
-})();
+    document.body.classList.add("page-loaded");
+
+    handleHeaderScroll();
+    handleBackToTop();
+    updateActiveNavigation();
+
+});
+
+
+/* =========================================================
+   15. REDUCED MOTION SUPPORT
+   ========================================================= */
+
+const prefersReducedMotion =
+    window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
+
+if (prefersReducedMotion.matches) {
+
+    document.documentElement.style.scrollBehavior =
+        "auto";
+
+}
+// Contact Popup Toggle
+const contactToggle = document.getElementById("contactToggle");
+const floatingContact = document.getElementById("floatingContact");
+
+if (contactToggle && floatingContact) {
+
+    contactToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+
+        const isOpen = floatingContact.classList.toggle("active");
+
+        contactToggle.setAttribute("aria-expanded", String(isOpen));
+        floatingContact.setAttribute("aria-hidden", String(!isOpen));
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", function (event) {
+        if (
+            !floatingContact.contains(event.target) &&
+            !contactToggle.contains(event.target)
+        ) {
+            floatingContact.classList.remove("active");
+            contactToggle.setAttribute("aria-expanded", "false");
+            floatingContact.setAttribute("aria-hidden", "true");
+        }
+    });
+
+    // Close with Escape
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            floatingContact.classList.remove("active");
+            contactToggle.setAttribute("aria-expanded", "false");
+            floatingContact.setAttribute("aria-hidden", "true");
+        }
+    });
+}
