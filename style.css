@@ -2844,40 +2844,38 @@ body {
         transform: none;
     }
 }
+
 /* ==================================
-   CONTACT POPUP PANEL
+   COMPACT FLOATING CONTACT POPUP
 ================================== */
 
 .floating-contact {
     position: fixed;
-    right: 16px;
-    bottom: 16px;
+    right: 18px;
+    bottom: 90px;
+    z-index: 10000;
 
-    width: min(480px, calc(100% - 24px));
-    max-height: min(80vh, 680px);
+    width:  min(340px, calc(100vw - 36px));
+    max-height: 70vh;
     overflow-y: auto;
 
     background: #ffffff;
     color: #111318;
 
-    border-radius: 30px;
-    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.35);
-
-    z-index: 10000;
+    border-radius: 20px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.30);
 
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
-    transform: translateY(25px);
+    transform: translateY(12px);
 
     transition:
-        opacity 0.3s ease,
-        transform 0.3s ease,
-        visibility 0.3s ease;
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
 }
 
-/* Open popup */
 .floating-contact.active {
     opacity: 1;
     visibility: visible;
@@ -2885,72 +2883,106 @@ body {
     transform: translateY(0);
 }
 
-/* Popup Header */
+/* Header */
 .contact-popup-header {
-    position: relative;
-    padding: 30px 24px 24px;
+    padding: 14px 18px 12px;
     text-align: center;
     border-bottom: 1px solid #e5e7eb;
 }
 
-/* Top handle */
 .contact-handle {
     display: block;
-    width: 70px;
-    height: 6px;
-    margin: 0 auto 30px;
-
-    background: #737780;
+    width: 42px;
+    height: 4px;
+    margin: 0 auto 12px;
+    background: #8b9098;
     border-radius: 10px;
 }
 
 .contact-popup-header h2 {
-    color: #111318;
-    font-size: 30px;
-    font-weight: 700;
     margin: 0;
+    color: #111318;
+    font-size: 22px;
+    font-weight: 700;
 }
 
-/* Contact Information */
+/* Contact details */
 .contact-popup-body {
-    padding: 10px 24px 30px;
+    padding: 6px 18px 16px;
 }
 
 .contact-item {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
 
-    padding: 20px 0 24px;
-
-    color: inherit;
+    padding: 12px 0;
     text-decoration: none;
-
+    color: inherit;
     overflow-wrap: anywhere;
-    border-bottom: 1px solid transparent;
-
-    transition: background 0.2s ease;
 }
 
 .contact-item:last-child {
-    padding-bottom: 10px;
+    padding-bottom: 4px;
+}
+
+.contact-label {
+    color: #111318;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.contact-value {
+    color: #737780;
+    font-size: 15px;
+    line-height: 1.5;
+    transition: color 0.2s ease;
 }
 
 .contact-item:hover .contact-value {
     color: #089fbd;
 }
 
-.contact-label {
-    color: #111318;
-    font-size: 23px;
-    font-weight: 700;
+/* Mobile */
+@media (max-width: 768px) {
+    .floating-contact {
+        right: 14px;
+        bottom: 82px;
+
+        width: min(320px, calc(100vw - 28px));
+        max-height: 65vh;
+
+        border-radius: 18px;
+    }
+
+    .contact-popup-header {
+        padding: 12px 16px 10px;
+    }
+
+    .contact-handle {
+        margin-bottom: 10px;
+    }
+
+    .contact-popup-header h2 {
+        font-size: 20px;
+    }
+
+    .contact-popup-body {
+        padding: 5px 16px 12px;
+    }
+
+    .contact-item {
+        padding: 10px 0;
+    }
+
+    .contact-label {
+        font-size: 16px;
+    }
+
+    .contact-value {
+        font-size: 14px;
+    }
 }
-
-.contact-value {
-    color: #737780;
-    font-size: 20px;
-    line-height: 1.6;
-
     transition: color 0.2s ease;
 }
 
