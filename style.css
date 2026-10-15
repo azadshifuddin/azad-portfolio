@@ -2605,8 +2605,8 @@ body {
 
 
 /* =====================================================
-   23. FINAL SOCIAL BUTTON FIX
-   Email, LinkedIn, Facebook and X: equal dimensions
+   23. SOCIAL BUTTON
+   LinkedIn, Facebook, Instagram and X: equal dimensions
    ===================================================== */
 
 .contact .social-icons {
@@ -2636,25 +2636,6 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
-/* Email */
-.contact .social-icons .social-icon.email {
-    color: #ffffff;
-    background: transparent;
-    border-color: #20d9ff;
-    transform: rotate(-8deg);
-}
-
-.contact .social-icons .social-icon.email svg {
-    width: 23px;
-    height: 23px;
-    min-width: 23px;
-    min-height: 23px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
 
 /* LinkedIn */
 .contact .social-icons .social-icon.linkedin {
@@ -2699,6 +2680,35 @@ body {
     line-height: 1;
     transform: translate(1px, 5px);
 }
+
+/* INSTAGRAM */
+.social-icon.instagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: linear-gradient(
+        45deg,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5
+    );
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.social-icon.instagram svg {
+    width: 24px;
+    height: 24px;
+}
+
+.social-icon.instagram:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(214, 41, 118, 0.3);
+}
+
 
 /* X */
 .contact .social-icons .social-icon.x-twitter {
