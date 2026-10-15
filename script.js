@@ -479,11 +479,7 @@ if (prefersReducedMotion.matches) {
         "auto";
 
 }
-
-// ===============================
-// FLOATING CONTACT MENU
-// ===============================
-
+// Contact Popup Toggle
 const contactToggle = document.getElementById("contactToggle");
 const floatingContact = document.getElementById("floatingContact");
 
@@ -494,30 +490,26 @@ if (contactToggle && floatingContact) {
 
         const isOpen = floatingContact.classList.toggle("active");
 
-        contactToggle.setAttribute("aria-expanded", isOpen);
-        floatingContact.setAttribute("aria-hidden", !isOpen);
+        contactToggle.setAttribute("aria-expanded", String(isOpen));
+        floatingContact.setAttribute("aria-hidden", String(!isOpen));
     });
 
     // Close when clicking outside
     document.addEventListener("click", function (event) {
-
         if (
             !floatingContact.contains(event.target) &&
             !contactToggle.contains(event.target)
         ) {
             floatingContact.classList.remove("active");
-
             contactToggle.setAttribute("aria-expanded", "false");
             floatingContact.setAttribute("aria-hidden", "true");
         }
     });
 
-    // Close with Escape key
+    // Close with Escape
     document.addEventListener("keydown", function (event) {
-
         if (event.key === "Escape") {
             floatingContact.classList.remove("active");
-
             contactToggle.setAttribute("aria-expanded", "false");
             floatingContact.setAttribute("aria-hidden", "true");
         }
