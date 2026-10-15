@@ -1,7 +1,6 @@
-```javascript
 /* =========================================================
    AZAD ENGINEER PORTFOLIO
-   Complete Main JavaScript
+   Complete Main JavaScript — Fixed Version
    ========================================================= */
 
 "use strict";
@@ -66,32 +65,8 @@ if (menuToggle && navMenu) {
     });
 }
 
-/* Close menu after selecting a navigation link */
-
 navLinks.forEach((link) => {
     link.addEventListener("click", closeMobileMenu);
-});
-
-/* Close menu when clicking outside */
-
-document.addEventListener("click", (event) => {
-    if (!navMenu || !menuToggle) return;
-
-    if (
-        navMenu.classList.contains("active") &&
-        !navMenu.contains(event.target) &&
-        !menuToggle.contains(event.target)
-    ) {
-        closeMobileMenu();
-    }
-});
-
-/* Close menu when switching to desktop layout */
-
-window.addEventListener("resize", () => {
-    if (window.innerWidth > 1024) {
-        closeMobileMenu();
-    }
 });
 
 /* =========================================================
@@ -206,7 +181,7 @@ if (
 }
 
 /* =========================================================
-   07. CONTACT POPUP
+   07. CONTACT POPUP — FIXED
    ========================================================= */
 
 function openContactPopup() {
@@ -230,7 +205,7 @@ function closeContactPopup() {
 }
 
 function toggleContactPopup() {
-    if (!floatingContact) return;
+    if (!floatingContact || !contactToggle) return;
 
     const isOpen = floatingContact.classList.contains("active");
 
@@ -242,14 +217,37 @@ function toggleContactPopup() {
 }
 
 if (contactToggle && floatingContact) {
+    /* Ensure the button does not submit a form */
+
+    if (contactToggle.tagName === "BUTTON") {
+        contactToggle.setAttribute("type", "button");
+    }
+
+    contactToggle.setAttribute("aria-controls", "floatingContact");
+    contactToggle.setAttribute("aria-haspopup", "true");
+
+    /* Set initial state */
+
+    floatingContact.classList.remove("active");
+    floatingContact.setAttribute("aria-hidden", "true");
+    contactToggle.setAttribute("aria-expanded", "false");
+
+    /* Open and close using Contact Me */
+
     contactToggle.addEventListener("click", (event) => {
+        event.preventDefault();
         event.stopPropagation();
+
         toggleContactPopup();
     });
+
+    /* Clicking inside the popup must not close it */
 
     floatingContact.addEventListener("click", (event) => {
         event.stopPropagation();
     });
+
+    /* Close when clicking anywhere outside */
 
     document.addEventListener("click", (event) => {
         if (
@@ -260,13 +258,10 @@ if (contactToggle && floatingContact) {
             closeContactPopup();
         }
     });
-
-    /* Initial accessibility state */
-
-    floatingContact.classList.remove("active");
-    floatingContact.setAttribute("aria-hidden", "true");
-
-    contactToggle.setAttribute("aria-expanded", "false");
+} else {
+    console.warn(
+        "Contact popup not initialized. Check #contactToggle and #floatingContact in index.html."
+    );
 }
 
 /* =========================================================
@@ -286,6 +281,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         const targetId = this.getAttribute("href");
 
         if (!targetId || targetId === "#") return;
+
+        /* Do not intercept the Contact Me popup button */
+
+        if (this.id === "contactToggle") return;
 
         const target = document.getElementById(targetId.slice(1));
 
@@ -309,8 +308,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             behavior: prefersReducedMotion.matches ? "auto" : "smooth"
         });
 
-        /* Update the URL hash without triggering another jump */
-
         if (window.location.hash !== targetId) {
             history.replaceState(null, "", targetId);
         }
@@ -326,17 +323,13 @@ function handleProfileImageError() {
 
     profileImage.style.display = "none";
 
-    const wrapper = profileImage.parentElement;
-
-    if (wrapper) {
-        wrapper.classList.add("image-missing");
+    if (profileImage.parentElement) {
+        profileImage.parentElement.classList.add("image-missing");
     }
 }
 
 if (profileImage) {
     profileImage.addEventListener("error", handleProfileImageError);
-
-    /* Handle an image that failed before this script ran */
 
     if (profileImage.complete && profileImage.naturalWidth === 0) {
         handleProfileImageError();
@@ -346,11 +339,6 @@ if (profileImage) {
 /* =========================================================
    11. CV LINK
    ========================================================= */
-
-/*
-   Keep cv.pdf in the same folder as index.html.
-   HTML link: href="cv.pdf"
-*/
 
 document.querySelectorAll('a[href="cv.pdf"]').forEach((link) => {
     link.addEventListener("click", () => {
@@ -395,6 +383,10 @@ window.addEventListener("scroll", handleScroll, {
 
 window.addEventListener("resize", () => {
     updateActiveNavigation();
+
+    if (window.innerWidth > 1024) {
+        closeMobileMenu();
+    }
 });
 
 /* =========================================================
@@ -424,4 +416,3 @@ if (document.readyState === "complete") {
 if (prefersReducedMotion.matches) {
     document.documentElement.style.scrollBehavior = "auto";
 }
-```
