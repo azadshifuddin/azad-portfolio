@@ -109,79 +109,137 @@
 
     <main>
 
-        <!-- =========================
-             HERO SECTION
-        ========================== -->
+        !-- =========================
+     HERO SECTION
+========================== -->
 
-        <section class="hero section" id="home">
+<section class="hero section" id="home">
 
-            <div class="container hero-grid">
+    <div class="container hero-grid">
 
-                <div class="hero-content">
+        <div class="hero-content">
 
-                    <p class="eyebrow">
-                        ELECTRICAL & AUTOMATION ENGINEER
-                    </p>
+            <p class="eyebrow">
+                ELECTRICAL & AUTOMATION ENGINEER
+            </p>
 
-                    <h1>
-                        Mohammad <br>
-                        <span>Shifuddin Azad</span>
-                    </h1>
+            <h1>
+                Mohammad <br>
+                <span>Shifuddin Azad</span>
+            </h1>
 
-                    <p class="hero-description">
-                    Electrical & Automation Engineer with
-                    <strong>10+ years of industrial experience</strong>
-                    in steel plant electrical systems, industrial automation,
-                    induction furnace operations, high-voltage systems,
-                    preventive maintenance, troubleshooting, and commissioning.
-                    Committed to improving equipment reliability, operational
-                    efficiency, and industrial safety.
-                    </p>
-                
-                    <div class="hero-buttons">
+            <p class="hero-description">
+                Electrical & Automation Engineer with
+                <strong>10+ years of industrial experience</strong>
+                in steel plant electrical systems, industrial automation,
+                induction furnace operations, high-voltage systems,
+                preventive maintenance, troubleshooting, and commissioning.
+                Committed to improving equipment reliability, operational
+                efficiency, and industrial safety.
+            </p>
+
+            <!-- HERO BUTTONS -->
+            <div class="hero-buttons">
 
                 <a href="#experience" class="btn btn-primary">
                     Explore My Experience
                 </a>
 
-                    <a href="cv.pdf"
+                <a href="cv.pdf"
                    class="btn btn-outline"
                    download>
+                    <i class="fas fa-download"></i>
                     Download CV
                 </a>
 
-                <a href="mailto:azadshifuddin.ctg@gmail.com"
-                   class="btn btn-outline">
-                Contact Me
-                </a>
-        
-                </div>
+                <!-- CONTACT TOGGLE -->
+                <button type="button"
+                        class="btn btn-outline"
+                        id="contactToggle"
+                        aria-expanded="false"
+                        aria-controls="floatingContact">
+                    <i class="fas fa-address-card"></i>
+                    Contact Me
+                </button>
 
-                   <div class="hero-stats">
+            </div>
+
+            <!-- HERO STATS -->
+            <div class="hero-stats">
 
                 <div class="stat">
-                <strong>10+</strong>
-            <span>Years of Experience</span>
-            </div>
-
-            <div class="stat">
-             <strong>35T</strong>
-                <span>Induction Furnace</span>
-            </div>
-
-            <div class="stat">
-            <strong>PLC</strong>
-            <span>Industrial Automation</span>
-        </div>
-
-        <div class="stat">
-        <strong>HV</strong>
-        <span>High Voltage Systems</span>
-    </div>
-</div>
-
+                    <strong>10+</strong>
+                    <span>Years of Experience</span>
                 </div>
 
+                <div class="stat">
+                    <strong>35T</strong>
+                    <span>Induction Furnace</span>
+                </div>
+
+                <div class="stat">
+                    <strong>PLC</strong>
+                    <span>Industrial Automation</span>
+                </div>
+
+                <div class="stat">
+                    <strong>HV</strong>
+                    <span>High Voltage Systems</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FLOATING CONTACT MENU
+========================== -->
+
+<div class="floating-contact"
+     id="floatingContact"
+     aria-hidden="true">
+
+    <!-- MOBILE -->
+    <a href="tel:+8801628671860"
+       class="float-btn call-btn"
+       aria-label="Call Mobile"
+       title="Mobile">
+
+        <i class="fas fa-phone"></i>
+        <span class="float-label">Mobile</span>
+
+    </a>
+
+    <!-- EMAIL -->
+    <a href="mailto:azadshifuddin.ctg@gmail.com"
+       class="float-btn email-btn"
+       aria-label="Send Email"
+       title="Email">
+
+        <i class="fas fa-envelope"></i>
+        <span class="float-label">Email</span>
+
+    </a>
+
+    <!-- WHATSAPP -->
+    <a href="https://wa.me/8801628671860"
+       class="float-btn whatsapp-btn"
+       aria-label="WhatsApp"
+       title="WhatsApp"
+       target="_blank"
+       rel="noopener noreferrer">
+
+        <i class="fab fa-whatsapp"></i>
+        <span class="float-label">WhatsApp</span>
+
+    </a>
+
+</div>
 
                 <div class="hero-visual">
 
