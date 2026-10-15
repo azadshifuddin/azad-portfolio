@@ -1,4 +1,4 @@
-```javascript
+
 /* =========================================================
    AZAD ENGINEER PORTFOLIO
    Main JavaScript
@@ -404,4 +404,4 @@ updateActiveNavigation();
 if (prefersReducedMotion.matches) {
     document.documentElement.style.scrollBehavior = "auto";
 }
-```
+
