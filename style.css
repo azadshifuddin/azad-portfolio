@@ -3166,3 +3166,114 @@ body {
         font-size: 14px;
     }
 }
+/* FORCE DARK + COMPACT FLOATING POPUP */
+
+#floatingContact.floating-contact {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 85px !important;
+    left: auto !important;
+    top: auto !important;
+
+    width: 290px !important;
+    max-width: calc(100vw - 32px) !important;
+    height: auto !important;
+    max-height: 55vh !important;
+    overflow-y: auto !important;
+
+    background: #0d1118 !important;
+    color: #f3f7fb !important;
+
+    border: 1px solid rgba(32, 217, 255, 0.35) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55) !important;
+
+    z-index: 10000 !important;
+}
+
+/* Popup hidden / visible state */
+#floatingContact.floating-contact:not(.active) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(12px) !important;
+}
+
+#floatingContact.floating-contact.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+}
+
+/* Header */
+#floatingContact .contact-popup-header {
+    background: #080b10 !important;
+    padding: 12px 16px !important;
+    text-align: center !important;
+    border-bottom: 1px solid rgba(32, 217, 255, 0.2) !important;
+}
+
+#floatingContact .contact-popup-header h2 {
+    color: #f3f7fb !important;
+    font-size: 21px !important;
+    margin: 0 !important;
+}
+
+#floatingContact .contact-handle {
+    background: #20d9ff !important;
+    width: 42px !important;
+    height: 4px !important;
+    margin: 0 auto 10px !important;
+}
+
+/* Contact details */
+#floatingContact .contact-popup-body {
+    background: #0d1118 !important;
+    padding: 6px 16px 12px !important;
+}
+
+#floatingContact .contact-item {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+
+    padding: 10px 0 !important;
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+
+    text-decoration: none !important;
+}
+
+#floatingContact .contact-label {
+    color: #20d9ff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+#floatingContact .contact-value {
+    color: #b7c2d0 !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    overflow-wrap: anywhere !important;
+}
+
+#floatingContact .contact-item:last-child {
+    border-bottom: none !important;
+}
+
+/* Mobile size */
+@media (max-width: 768px) {
+    #floatingContact.floating-contact {
+        width: 280px !important;
+        max-width: calc(100vw - 28px) !important;
+        max-height: 50vh !important;
+
+        right: 14px !important;
+        bottom: 78px !important;
+        left: auto !important;
+        top: auto !important;
+
+        border-radius: 16px !important;
+    }
+}
