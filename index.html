@@ -1,10 +1,12 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
 
-    <meta name="google-site-verification" content="afqSQtrJhjkcMoD6lZ7TPFdJOwOW57F2X3rR446hjC8" />
+    <meta name="google-site-verification"
+          content="afqSQtrJhjkcMoD6lZ7TPFdJOwOW57F2X3rR446hjC8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,15 +20,21 @@
 
     <meta name="author" content="Md Shifuddin Azad">
 
+    <meta name="theme-color" content="#080b10">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <!-- Google Font -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
@@ -40,16 +48,18 @@
 
     <header class="header" id="header">
 
-        <nav class="navbar container">
+        <nav class="navbar container" aria-label="Main navigation">
 
-            <a href="#home" class="logo">
+            <a href="#home" class="logo" aria-label="Azad Shifuddin home">
                 <span>AZAD</span>
                 <small>SHIFUDDIN</small>
             </a>
 
-            <button class="menu-toggle"
+            <button type="button"
+                    class="menu-toggle"
                     id="menuToggle"
                     aria-label="Open navigation menu"
+                    aria-controls="navMenu"
                     aria-expanded="false">
 
                 <span></span>
@@ -60,45 +70,19 @@
 
             <ul class="nav-menu" id="navMenu">
 
-                <li>
-                    <a href="#home" class="nav-link active">Home</a>
-                </li>
-
-                <li>
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-
-                <li>
-                    <a href="#experience" class="nav-link">Experience</a>
-                </li>
-                <li> 
-                    <a href="#training" class="nav-link">Training</a> 
-                </li>
-             
-                <li>
-                <a href="#certifications" class="nav-link">Certifications</a>
-                </li>
-                <li>
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-
-                <li>
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-
-                <li>
-                    <a href="#education" class="nav-link">Education</a>
-                </li>
-
-                <li>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#training" class="nav-link">Training</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
 
             </ul>
 
-            <a href="cv.pdf"
-               class="nav-cv"
-               download>
+            <a href="cv.pdf" class="nav-cv" download>
                 Download CV
             </a>
 
@@ -108,165 +92,161 @@
 
 
     <main>
-<!-- =========================
-     HERO SECTION
-========================== -->
 
-<section class="hero section" id="home">
+        <!-- =========================
+             HERO SECTION
+        ========================== -->
 
-    <div class="container hero-grid">
+        <section class="hero section" id="home">
 
-        <!-- HERO CONTENT -->
-        <div class="hero-content">
+            <div class="container hero-grid">
 
-            <p class="eyebrow">
-                ELECTRICAL & AUTOMATION ENGINEER
-            </p>
+                <div class="hero-content">
 
-            <h1>
-                Mohammad <br>
-                <span>Shifuddin Azad</span>
-            </h1>
-
-            <p class="hero-description">
-                Electrical & Automation Engineer with
-                <strong>10+ years of industrial experience</strong>
-                in steel plant electrical systems, industrial automation,
-                induction furnace operations, high-voltage systems,
-                preventive maintenance, troubleshooting, and commissioning.
-                Committed to improving equipment reliability, operational
-                efficiency, and industrial safety.
-            </p>
-
-            <!-- HERO BUTTONS -->
-            <div class="hero-buttons">
-
-                <a href="#experience" class="btn btn-primary">
-                    Explore My Experience
-                </a>
-
-                <a href="cv.pdf"
-                   class="btn btn-outline"
-                   download>
-                    <i class="fas fa-download"></i>
-                    Download CV
-                </a>
-
-                <button type="button"
-                        class="btn btn-outline"
-                        id="contactToggle"
-                        aria-expanded="false"
-                        aria-controls="floatingContact">
-                    <i class="fas fa-address-card"></i>
-                    Contact Me
-                </button>
-
-            </div>
-
-            <!-- HERO STATS -->
-            <div class="hero-stats">
-
-                <div class="stat">
-                    <strong>10+</strong>
-                    <span>Years of Experience</span>
-                </div>
-
-                <div class="stat">
-                    <strong>35T</strong>
-                    <span>Induction Furnace</span>
-                </div>
-
-                <div class="stat">
-                    <strong>PLC</strong>
-                    <span>Industrial Automation</span>
-                </div>
-
-                <div class="stat">
-                    <strong>HV</strong>
-                    <span>High Voltage Systems</span>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- PROFILE IMAGE: SAME GRID AS HERO CONTENT -->
-        <div class="hero-visual">
-
-            <div class="profile-card">
-
-                <div class="profile-image-wrapper">
-
-                    <img src="profile.jpg"
-                         alt="Md Shifuddin Azad"
-                         class="profile-image">
-
-                </div>
-
-                <div class="profile-info">
-
-                    <p class="profile-role">
-                        Electrical & Automation
+                    <p class="eyebrow">
+                        ELECTRICAL &amp; AUTOMATION ENGINEER
                     </p>
 
-                    <h2>Engineer</h2>
+                    <h1>
+                        Mohammad <br>
+                        <span>Shifuddin Azad</span>
+                    </h1>
 
-                    <span class="status">
-                        <span class="status-dot"></span>
-                        Available for Engineering Opportunities
-                    </span>
+                    <p class="hero-description">
+                        Electrical &amp; Automation Engineer with
+                        <strong>10+ years of industrial experience</strong>
+                        in steel plant electrical systems, industrial automation,
+                        induction furnace operations, high-voltage systems,
+                        preventive maintenance, troubleshooting, and commissioning.
+                        Committed to improving equipment reliability, operational
+                        efficiency, and industrial safety.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#experience" class="btn btn-primary">
+                            Explore My Experience
+                        </a>
+
+                        <a href="cv.pdf" class="btn btn-outline" download>
+                            <i class="fas fa-download" aria-hidden="true"></i>
+                            Download CV
+                        </a>
+
+                        <button type="button"
+                                class="btn btn-outline"
+                                id="contactToggle"
+                                aria-expanded="false"
+                                aria-controls="floatingContact">
+                            <i class="fas fa-address-card" aria-hidden="true"></i>
+                            Contact Me
+                        </button>
+
+                    </div>
+
+                    <div class="hero-stats">
+
+                        <div class="stat">
+                            <strong>10+</strong>
+                            <span>Years of Experience</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>35T</strong>
+                            <span>Induction Furnace</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>PLC</strong>
+                            <span>Industrial Automation</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>HV</strong>
+                            <span>High Voltage Systems</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="hero-visual">
+
+                    <div class="profile-card">
+
+                        <div class="profile-image-wrapper">
+
+                            <img src="profile.jpg"
+                                 alt="Md Shifuddin Azad"
+                                 class="profile-image">
+
+                        </div>
+
+                        <div class="profile-info">
+
+                            <p class="profile-role">
+                                Electrical &amp; Automation
+                            </p>
+
+                            <h2>Engineer</h2>
+
+                            <span class="status">
+                                <span class="status-dot"></span>
+                                Available for Engineering Opportunities
+                            </span>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
+        </section>
+
+
+        <!-- =========================
+             FLOATING CONTACT POPUP
+        ========================== -->
+
+        <div class="floating-contact"
+             id="floatingContact"
+             aria-hidden="true">
+
+            <div class="contact-popup-header">
+                <span class="contact-handle"></span>
+                <h2>Contact</h2>
+            </div>
+
+            <div class="contact-popup-body">
+
+                <a href="tel:+8801628671860" class="contact-item">
+                    <span class="contact-label">Call</span>
+                    <span class="contact-value">0162 867 1860</span>
+                </a>
+
+                <a href="mailto:azadshifuddin.ctg@gmail.com"
+                   class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">
+                        azadshifuddin.ctg@gmail.com
+                    </span>
+                </a>
+
+                <a href="https://wa.me/8801628671860"
+                   class="contact-item"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="contact-label">WhatsApp</span>
+                    <span class="contact-value">+880 1628-671860</span>
+                </a>
+
+            </div>
+
         </div>
 
-    </div>
 
-</section>
-
-
-<!-- =========================
-     FLOATING CONTACT POPUP
-========================== -->
-
-<div class="floating-contact"
-     id="floatingContact"
-     aria-hidden="true">
-
-    <div class="contact-popup-header">
-        <span class="contact-handle"></span>
-        <h2>Contact</h2>
-    </div>
-
-    <div class="contact-popup-body">
-
-        <a href="tel:+8801628671860" class="contact-item">
-            <span class="contact-label">Call</span>
-            <span class="contact-value">0162 867 1860</span>
-        </a>
-
-        <a href="mailto:azadshifuddin.ctg@gmail.com"
-           class="contact-item">
-            <span class="contact-label">Email</span>
-            <span class="contact-value">
-                azadshifuddin.ctg@gmail.com
-            </span>
-        </a>
-
-        <a href="https://wa.me/8801628671860"
-           class="contact-item"
-           target="_blank"
-           rel="noopener noreferrer">
-            <span class="contact-label">WhatsApp</span>
-            <span class="contact-value">+880 1628-671860</span>
-        </a>
-
-    </div>
-
-</div>
-        
         <!-- =========================
              ABOUT SECTION
         ========================== -->
@@ -276,85 +256,76 @@
             <div class="container">
 
                 <div class="section-heading">
-
                     <span class="section-number">01</span>
 
                     <div>
                         <p class="section-label">ABOUT ME</p>
-
-                        <h2>
-                            Engineering Experience Built
-                            Around Reliability.
-                        </h2>
+                        <h2>Engineering Experience Built Around Reliability.</h2>
                     </div>
-
                 </div>
-
 
                 <div class="about-grid">
 
                     <div class="about-text">
 
                         <p class="lead">
-                            I am an Electrical & Automation Engineer with 10+ years of hands-on industrial experience in electrical maintenance, automation, commissioning, and production support..
+                            I am an Electrical &amp; Automation Engineer with
+                            10+ years of hands-on industrial experience in
+                            electrical maintenance, automation, commissioning,
+                            and production support.
                         </p>
 
                         <p>
-                          My expertise covers Induction Furnace and LRF systems, high-voltage equipment, MCC panels, transformers, industrial drives, PLC, SCADA, HMI, EOT cranes, and utility systems in steel manufacturing.
+                            My expertise covers Induction Furnace and LRF systems,
+                            high-voltage equipment, MCC panels, transformers,
+                            industrial drives, PLC, SCADA, HMI, EOT cranes,
+                            and utility systems in steel manufacturing.
                         </p>
 
                         <p>
-                           I focus on preventive and predictive maintenance, troubleshooting, equipment reliability, electrical safety, and supporting continuous plant operations.
+                            I focus on preventive and predictive maintenance,
+                            troubleshooting, equipment reliability, electrical
+                            safety, and supporting continuous plant operations.
                         </p>
 
                     </div>
 
-
                     <div class="about-highlights">
 
                         <div class="highlight-card">
-
                             <span class="highlight-icon">01</span>
-
-                            <h3>Electrical Maintenance</h3> 
-                            <p> 
-                                Preventive, predictive and breakdown maintenance of industrial electrical equipment and systems.
+                            <h3>Electrical Maintenance</h3>
+                            <p>
+                                Preventive, predictive and breakdown maintenance
+                                of industrial electrical equipment and systems.
                             </p>
                         </div>
 
-
                         <div class="highlight-card">
-
                             <span class="highlight-icon">02</span>
-
-                            <h3>Automation & Control</h3> 
-                            <p> 
-                                PLC, HMI, SCADA and industrial drive troubleshooting to support reliable automation systems. 
+                            <h3>Automation &amp; Control</h3>
+                            <p>
+                                PLC, HMI, SCADA and industrial drive troubleshooting
+                                to support reliable automation systems.
                             </p>
                         </div>
 
-
                         <div class="highlight-card">
-
                             <span class="highlight-icon">03</span>
-
-                            <h3>Installation & Commissioning</h3> 
-                            <p> 
-                                Electrical installation, testing, commissioning and integration of industrial equipment. 
+                            <h3>Installation &amp; Commissioning</h3>
+                            <p>
+                                Electrical installation, testing, commissioning
+                                and integration of industrial equipment.
                             </p>
-
                         </div>
 
-
                         <div class="highlight-card">
-
                             <span class="highlight-icon">04</span>
-
-                            <h3>Plant Operations</h3> 
-                            <p> 
-                                Power load balancing, electrical stability and reliable continuous steel plant operations. 
+                            <h3>Plant Operations</h3>
+                            <p>
+                                Power load balancing, electrical stability and
+                                reliable continuous steel plant operations.
                             </p>
-
                         </div>
 
                     </div>
@@ -366,418 +337,462 @@
         </section>
 
 
-<!-- =========================
-     EXPERIENCE SECTION
-========================== -->
+        <!-- =========================
+             EXPERIENCE SECTION
+        ========================== -->
 
-<section class="experience section" id="experience">
+        <section class="experience section" id="experience">
 
-    <div class="container">
+            <div class="container">
 
-        <div class="section-heading">
+                <div class="section-heading">
+                    <span class="section-number">02</span>
 
-            <span class="section-number">02</span>
-
-            <div>
-                <p class="section-label">PROFESSIONAL EXPERIENCE</p>
-
-                <h2>
-                    Hands-on Industrial Experience.
-                </h2>
-            </div>
-
-        </div>
-
-        <div class="timeline">
-
-            <!-- KSRM -->
-
-            <article class="timeline-item">
-
-                <div class="timeline-marker"></div>
-
-                <div class="timeline-content">
-
-                    <div class="experience-header">
-
-                        <div>
-                            <span class="experience-date">
-                                Dec 2017 — Present
-                            </span>
-
-                            <h3>Shift In-Charge</h3>
-
-                            <h4>Electrical & Automation</h4>
-                        </div>
-
-                        <span class="experience-type">
-                            Full Time
-                        </span>
-
+                    <div>
+                        <p class="section-label">PROFESSIONAL EXPERIENCE</p>
+                        <h2>Hands-on Industrial Experience.</h2>
                     </div>
-
-                    <p class="company">
-                        KSRM Steel Plant Limited
-                        <span>· Melting Unit</span>
-                    </p>
-
-                    <p class="location">
-                        Bara Kumira, Sitakunda, Chattogram
-                    </p>
-
-                    <ul class="experience-list">
-
-                        <li>
-                            Supervise shift-based electrical and
-                            automation operations supporting continuous
-                            steel billet production.
-                        </li>
-
-                        <li>
-                            Operate, maintain and troubleshoot 35-ton
-                            Induction Furnace and LRF electrical systems
-                            and associated auxiliaries.
-                        </li>
-
-                        <li>
-                            Maintain high-voltage systems, MCC panels,
-                            transformers, VCB, ACB and industrial
-                            electrical equipment.
-                        </li>
-
-                        <li>
-                            Troubleshoot PLC and automation systems
-                            using Siemens SIMATIC S7, WinCC, SCADA
-                            and HMI platforms.
-                        </li>
-
-                        <li>
-                            Perform troubleshooting, parameter checking
-                            and maintenance of ABB and Siemens drives.
-                        </li>
-
-                        <li>
-                            Support installation, commissioning,
-                            maintenance and troubleshooting of EOT cranes
-                            and their electrical control systems.
-                        </li>
-
-                        <li>
-                            Execute preventive, predictive and breakdown
-                            maintenance to improve equipment reliability
-                            and minimize production interruptions.
-                        </li>
-
-                        <li>
-                            Monitor electrical load balancing and
-                            power stability to support reliable
-                            plant operations.
-                        </li>
-
-                        <li>
-                            Follow Lockout/Tagout (LOTO) procedures
-                            and electrical safety requirements
-                            during maintenance activities.
-                        </li>
-
-                    </ul>
-
-                    <div class="tag-list">
-                        <span>Induction Furnace</span>
-                        <span>LRF</span>
-                        <span>HV Systems</span>
-                        <span>PLC</span>
-                        <span>SCADA</span>
-                        <span>HMI</span>
-                        <span>ABB & Siemens Drives</span>
-                        <span>EOT Crane</span>
-                        <span>MCC</span>
-                        <span>LOTO</span>
-                    </div>
-
                 </div>
+
+                <div class="timeline">
+
+                    <!-- KSRM -->
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-marker"></div>
+
+                        <div class="timeline-content">
+
+                            <div class="experience-header">
+
+                                <div>
+                                    <span class="experience-date">
+                                        Dec 2017 — Present
+                                    </span>
+
+                                    <h3>Shift In-Charge</h3>
+                                    <h4>Electrical &amp; Automation</h4>
+                                </div>
+
+                                <span class="experience-type">Full Time</span>
+
+                            </div>
+
+                            <p class="company">
+                                KSRM Steel Plant Limited
+                                <span>· Melting Unit</span>
+                            </p>
+
+                            <p class="location">
+                                Bara Kumira, Sitakunda, Chattogram
+                            </p>
+
+                            <ul class="experience-list">
+
+                                <li>
+                                    Supervise shift-based electrical and automation
+                                    operations supporting continuous steel billet production.
+                                </li>
+
+                                <li>
+                                    Operate, maintain and troubleshoot 35-ton
+                                    Induction Furnace and LRF electrical systems
+                                    and associated auxiliaries.
+                                </li>
+
+                                <li>
+                                    Maintain high-voltage systems, MCC panels,
+                                    transformers, VCB, ACB and industrial
+                                    electrical equipment.
+                                </li>
+
+                                <li>
+                                    Troubleshoot PLC and automation systems using
+                                    Siemens SIMATIC S7, WinCC, SCADA and HMI platforms.
+                                </li>
+
+                                <li>
+                                    Perform troubleshooting, parameter checking
+                                    and maintenance of ABB and Siemens drives.
+                                </li>
+
+                                <li>
+                                    Support installation, commissioning, maintenance
+                                    and troubleshooting of EOT cranes and their
+                                    electrical control systems.
+                                </li>
+
+                                <li>
+                                    Execute preventive, predictive and breakdown
+                                    maintenance to improve equipment reliability
+                                    and minimize production interruptions.
+                                </li>
+
+                                <li>
+                                    Monitor electrical load balancing and power
+                                    stability to support reliable plant operations.
+                                </li>
+
+                                <li>
+                                    Follow Lockout/Tagout (LOTO) procedures and
+                                    electrical safety requirements during
+                                    maintenance activities.
+                                </li>
+
+                            </ul>
+
+                            <div class="tag-list">
+                                <span>Induction Furnace</span>
+                                <span>LRF</span>
+                                <span>HV Systems</span>
+                                <span>PLC</span>
+                                <span>SCADA</span>
+                                <span>HMI</span>
+                                <span>ABB &amp; Siemens Drives</span>
+                                <span>EOT Crane</span>
+                                <span>MCC</span>
+                                <span>LOTO</span>
+                            </div>
+
+                        </div>
 
                     </article>
 
 
-            
-            <!-- ZILANI -->
+                    <!-- ZILANI -->
 
-<article class="timeline-item">
+                    <article class="timeline-item">
 
-    <div class="timeline-marker"></div>
+                        <div class="timeline-marker"></div>
 
-    <div class="timeline-content">
+                        <div class="timeline-content">
 
-        <div class="experience-header">
+                            <div class="experience-header">
 
-            <div>
-                <span class="experience-date">
-                    Mar 2017 — Nov 2017
-                </span>
+                                <div>
+                                    <span class="experience-date">
+                                        Mar 2017 — Nov 2017
+                                    </span>
 
-                <h3>Sub Assistant Engineer</h3>
+                                    <h3>Sub Assistant Engineer</h3>
+                                    <h4>Electrical</h4>
+                                </div>
 
-                <h4>Electrical</h4>
-            </div>
+                            </div>
 
-        </div>
+                            <p class="company">Zilani CNG Filling Station Ltd.</p>
+                            <p class="location">Karnaphuli, Chattogram</p>
 
-        <p class="company">
-            Zilani CNG Filling Station Ltd.
-        </p>
+                            <ul class="experience-list">
+                                <li>
+                                    Monitored and recorded CMS gas line readings
+                                    and daily gas consumption.
+                                </li>
+                                <li>
+                                    Recorded transformer operating readings and
+                                    monitored electrical energy consumption.
+                                </li>
+                                <li>
+                                    Maintained daily utility consumption records
+                                    to support operational monitoring and reporting.
+                                </li>
+                                <li>
+                                    Performed electrical maintenance and troubleshooting
+                                    of gas engine, compressor and water treatment
+                                    plant (WTP) systems.
+                                </li>
+                            </ul>
 
-        <p class="location">
-            Karnaphuli, Chattogram
-        </p>
-<ul class="experience-list">
-    <li>Monitored and recorded CMS gas line readings and daily gas consumption.</li>
-    <li>Recorded transformer operating readings and monitored electrical energy consumption.</li>
-    <li>Maintained daily utility consumption records to support operational monitoring and reporting.</li>
-    <li>Performed electrical maintenance and troubleshooting of gas engine, compressor and water treatment plant (WTP) systems.</li>
-</ul>
+                            <div class="tag-list">
+                                <span>CMS Gas Reading</span>
+                                <span>Gas Consumption</span>
+                                <span>Transformer Monitoring</span>
+                                <span>Energy Consumption</span>
+                                <span>Gas Engine</span>
+                                <span>Compressor</span>
+                                <span>WTP</span>
+                            </div>
 
-<div class="tag-list">
-    <span>CMS Gas Reading</span>
-    <span>Gas Consumption</span>
-    <span>Transformer Monitoring</span>
-    <span>Energy Consumption</span>
-    <span>Gas Engine</span>
-    <span>Compressor</span>
-    <span>WTP</span>
-</div>
-
-    </div>
-
-</article>
-
-
-        <!-- HKD -->
-
-<article class="timeline-item">
-    <div class="timeline-marker"></div>
-
-    <div class="timeline-content">
-        <div class="experience-header">
-            <div>
-                <span class="experience-date">
-                    Jul 2016 — Feb 2017
-                </span>
-                <h3>Sub Assistant Engineer</h3>
-                <h4>Electrical</h4>
-            </div>
-        </div>
-
-        <p class="company">HKD Outdoor Innovations</p>
-        <p class="location">KEPZ, Chattogram</p>
-
-        <ul class="experience-list">
-            <li>Maintained and troubleshot industrial machinery, including slitting, cutting and utility systems.</li>
-            <li>Operated and monitored boilers, generators, compressors and other plant utility systems.</li>
-            <li>Provided breakdown support and carried out preventive maintenance to improve equipment reliability.</li>
-            <li>Monitored electrical and utility systems to support continuous production operations.</li>
-        </ul>
-
-        <div class="tag-list">
-            <span>Electrical Maintenance</span>
-            <span>Slitting & Cutting Machines</span>
-            <span>Boiler</span>
-            <span>Generator</span>
-            <span>Compressor</span>
-            <span>Plant Utilities</span>
-            <span>Preventive Maintenance</span>
-            <span>Breakdown Troubleshooting</span>
-        </div>
-    </div>
-</article>
-
-
-<!-- =========================
-     INDUSTRIAL TRAINING
-========================== -->
-
-<section class="training section" id="training">
-    <div class="container">
-
-        <div class="section-heading">
-            <span class="section-number">03</span>
-            <div>
-                <p class="section-label">INDUSTRIAL TRAINING</p>
-                <h2>Industrial Attachment & Practical Learning.</h2>
-            </div>
-        </div>
-
-        <div class="timeline">
-
-            <article class="timeline-item">
-                <div class="timeline-marker"></div>
-
-                <div class="timeline-content">
-
-                    <div class="experience-header">
-                        <div>
-                            <span class="experience-date">
-                                3 Months
-                            </span>
-                            <h3>Industrial Attachment</h3>
-                            <h4>Electrical</h4>
                         </div>
 
-                        <span class="experience-type">
-                            Training
-                        </span>
-                    </div>
+                    </article>
 
-                    <p class="company">
-                        Eastern Cables Limited
-                    </p>
 
-                    <p class="location">
-                        Patenga, Chattogram, Bangladesh
-                    </p>
+                    <!-- HKD -->
 
-                    <p class="training-intro">
-                        Completed a three-month industrial attachment
-                        focused on power cable manufacturing, industrial
-                        production processes, electrical testing and
-                        plant safety practices.
-                    </p>
+                    <article class="timeline-item">
 
-                    <h4 class="training-subtitle">
-                        Training Focus Areas
-                    </h4>
+                        <div class="timeline-marker"></div>
 
-                    <ul class="experience-list">
-                        <li>Learned about power cable and conductor manufacturing, including insulation, testing and finishing processes.</li>
+                        <div class="timeline-content">
 
-                        <li>Gained exposure to industrial production systems and workflow management.</li>
+                            <div class="experience-header">
 
-                        <li>Developed familiarity with high-power cable applications in industrial and utility systems.</li>
+                                <div>
+                                    <span class="experience-date">
+                                        Jul 2016 — Feb 2017
+                                    </span>
 
-                        <li>Learned about industrial safety standards and operational procedures.</li>
+                                    <h3>Sub Assistant Engineer</h3>
+                                    <h4>Electrical</h4>
+                                </div>
 
-                        <li>Gained basic knowledge of quality control, testing and plant maintenance systems.</li>
-                    </ul>
+                            </div>
 
-                    <div class="tag-list">
-                        <span>Power Cables</span>
-                        <span>Conductors</span>
-                        <span>Cable Testing</span>
-                        <span>Insulation</span>
-                        <span>Quality Control</span>
-                        <span>Industrial Safety</span>
-                        <span>Plant Maintenance</span>
-                    </div>
+                            <p class="company">HKD Outdoor Innovations</p>
+                            <p class="location">KEPZ, Chattogram</p>
 
-                </div>
-            </article>
+                            <ul class="experience-list">
+                                <li>
+                                    Maintained and troubleshot industrial machinery,
+                                    including slitting, cutting and utility systems.
+                                </li>
+                                <li>
+                                    Operated and monitored boilers, generators,
+                                    compressors and other plant utility systems.
+                                </li>
+                                <li>
+                                    Provided breakdown support and carried out
+                                    preventive maintenance to improve equipment reliability.
+                                </li>
+                                <li>
+                                    Monitored electrical and utility systems to
+                                    support continuous production operations.
+                                </li>
+                            </ul>
 
-        </div>
-    </div>
-</section>
+                            <div class="tag-list">
+                                <span>Electrical Maintenance</span>
+                                <span>Slitting &amp; Cutting Machines</span>
+                                <span>Boiler</span>
+                                <span>Generator</span>
+                                <span>Compressor</span>
+                                <span>Plant Utilities</span>
+                                <span>Preventive Maintenance</span>
+                                <span>Breakdown Troubleshooting</span>
+                            </div>
 
-            
-<!-- =========================
-     PROFESSIONAL COURSES
-========================== -->
-
-<section class="training section" id="certifications">
-    <div class="container">
-
-        <div class="section-heading">
-            <span class="section-number">04</span>
-            <div>
-                <p class="section-label">PROFESSIONAL DEVELOPMENT</p>
-                <h2>Courses & Certifications.</h2>
-            </div>
-        </div>
-
-        <div class="timeline">
-            <article class="timeline-item">
-                <div class="timeline-marker"></div>
-
-                <div class="timeline-content">
-                    <div class="experience-header">
-                        <div>
-                            <span class="experience-date">
-                             Industrial Automation
-                            </span>
-                            <h3>30-Day PLC Webinar</h3>
-                            <h4>
-                                Webinar Participation on PLC for
-                                Diploma Engineers
-                            </h4>
                         </div>
 
-                        <span class="experience-type">
-                            Certificate
-                        </span>
-                    </div>
+                    </article>
 
-                    <p class="company">
-                        Gobeshona Learning Academy
-                    </p>
+                </div><!-- /.timeline -->
 
-                    <p class="location">
-                        Duration: 30 Days
-                    </p>
+            </div><!-- /.container -->
 
-                    <div class="tag-list">
-                        <span>PLC</span>
-                        <span>Industrial Automation</span>
-                        <span>Professional Development</span>
-                    </div>
-                </div>
-            </article>
-       
-        <!-- Electrical Supervisor License -->
-
-<article class="timeline-item">
-    <div class="timeline-marker"></div>
-
-    <div class="timeline-content">
-        <div class="experience-header">
-            <div>
-                <span class="experience-date">
-                    ABC Category
-                </span>
-                <h3>Electrical Supervisor License</h3>
-                <h4>Professional License</h4>
-            </div>
-
-            <span class="experience-type">
-                Licensed
-            </span>
-        </div>
-
-        <p class="company">
-            Electricity Licensing Board, Bangladesh
-        </p>
-
-        <p class="location">
-            Power Division, Ministry of Power, Energy and
-            Mineral Resources
-        </p>
-
-        <p class="license-authority">
-            <strong>License No:</strong> S20220010217
-        </p>
-
-        <div class="tag-list">
-            <span>Electrical Supervisor</span>
-            <span>ABC Category</span>
-            <span>Professional License</span>
-        </div>
-    </div>
-</article>
-        </div>
-
-    </div>
-</section>
+        </section><!-- /#experience -->
 
 
         <!-- =========================
-             SKILLS SECTION
+             INDUSTRIAL TRAINING
+        ========================== -->
+
+        <section class="training section" id="training">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-number">03</span>
+
+                    <div>
+                        <p class="section-label">INDUSTRIAL TRAINING</p>
+                        <h2>Industrial Attachment &amp; Practical Learning.</h2>
+                    </div>
+                </div>
+
+                <div class="timeline">
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-marker"></div>
+
+                        <div class="timeline-content">
+
+                            <div class="experience-header">
+
+                                <div>
+                                    <span class="experience-date">3 Months</span>
+                                    <h3>Industrial Attachment</h3>
+                                    <h4>Electrical</h4>
+                                </div>
+
+                                <span class="experience-type">Training</span>
+
+                            </div>
+
+                            <p class="company">Eastern Cables Limited</p>
+
+                            <p class="location">
+                                Patenga, Chattogram, Bangladesh
+                            </p>
+
+                            <p class="training-intro">
+                                Completed a three-month industrial attachment
+                                focused on power cable manufacturing, industrial
+                                production processes, electrical testing and
+                                plant safety practices.
+                            </p>
+
+                            <h4 class="training-subtitle">Training Focus Areas</h4>
+
+                            <ul class="experience-list">
+                                <li>
+                                    Learned about power cable and conductor
+                                    manufacturing, including insulation, testing
+                                    and finishing processes.
+                                </li>
+                                <li>
+                                    Gained exposure to industrial production
+                                    systems and workflow management.
+                                </li>
+                                <li>
+                                    Developed familiarity with high-power cable
+                                    applications in industrial and utility systems.
+                                </li>
+                                <li>
+                                    Learned about industrial safety standards
+                                    and operational procedures.
+                                </li>
+                                <li>
+                                    Gained basic knowledge of quality control,
+                                    testing and plant maintenance systems.
+                                </li>
+                            </ul>
+
+                            <div class="tag-list">
+                                <span>Power Cables</span>
+                                <span>Conductors</span>
+                                <span>Cable Testing</span>
+                                <span>Insulation</span>
+                                <span>Quality Control</span>
+                                <span>Industrial Safety</span>
+                                <span>Plant Maintenance</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROFESSIONAL COURSES
+        ========================== -->
+
+        <section class="training section" id="certifications">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-number">04</span>
+
+                    <div>
+                        <p class="section-label">PROFESSIONAL DEVELOPMENT</p>
+                        <h2>Courses &amp; Certifications.</h2>
+                    </div>
+                </div>
+
+                <div class="timeline">
+
+                    <!-- PLC WEBINAR -->
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-marker"></div>
+
+                        <div class="timeline-content">
+
+                            <div class="experience-header">
+
+                                <div>
+                                    <span class="experience-date">
+                                        Industrial Automation
+                                    </span>
+
+                                    <h3>30-Day PLC Webinar</h3>
+
+                                    <h4>
+                                        Webinar Participation on PLC for
+                                        Diploma Engineers
+                                    </h4>
+                                </div>
+
+                                <span class="experience-type">Certificate</span>
+
+                            </div>
+
+                            <p class="company">Gobeshona Learning Academy</p>
+                            <p class="location">Duration: 30 Days</p>
+
+                            <div class="tag-list">
+                                <span>PLC</span>
+                                <span>Industrial Automation</span>
+                                <span>Professional Development</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ELECTRICAL SUPERVISOR LICENSE -->
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-marker"></div>
+
+                        <div class="timeline-content">
+
+                            <div class="experience-header">
+
+                                <div>
+                                    <span class="experience-date">ABC Category</span>
+                                    <h3>Electrical Supervisor License</h3>
+                                    <h4>Professional License</h4>
+                                </div>
+
+                                <span class="experience-type">Licensed</span>
+
+                            </div>
+
+                            <p class="company">
+                                Electricity Licensing Board, Bangladesh
+                            </p>
+
+                            <p class="location">
+                                Power Division, Ministry of Power, Energy and
+                                Mineral Resources
+                            </p>
+
+                            <p class="license-authority">
+                                <strong>License No:</strong> S20220010217
+                            </p>
+
+                            <div class="tag-list">
+                                <span>Electrical Supervisor</span>
+                                <span>ABC Category</span>
+                                <span>Professional License</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TECHNICAL SKILLS
         ========================== -->
 
         <section class="skills section" id="skills">
@@ -785,36 +800,23 @@
             <div class="container">
 
                 <div class="section-heading">
-
                     <span class="section-number">05</span>
 
                     <div>
                         <p class="section-label">TECHNICAL SKILLS</p>
-
-                        <h2>
-                            Systems I work with.
-                        </h2>
+                        <h2>Systems I work with.</h2>
                     </div>
-
                 </div>
-
 
                 <div class="skills-grid">
 
-                    <!-- Electrical -->
-
                     <div class="skill-category">
-
                         <div class="skill-category-header">
-
                             <span class="skill-number">01</span>
-
                             <h3>Electrical Systems</h3>
-
                         </div>
 
                         <div class="skill-items">
-
                             <span>High Voltage Systems</span>
                             <span>MCC Panels</span>
                             <span>Transformers</span>
@@ -823,732 +825,15 @@
                             <span>SF6 Systems</span>
                             <span>Power Distribution</span>
                             <span>Load Balancing</span>
-
                         </div>
-
                     </div>
 
-
-                    <!-- Automation -->
-
                     <div class="skill-category">
-
                         <div class="skill-category-header">
-
                             <span class="skill-number">02</span>
-
-                            <h3>Automation & Control</h3>
-
+                            <h3>Automation &amp; Control</h3>
                         </div>
 
                         <div class="skill-items">
-
                             <span>Siemens SIMATIC S7</span>
-                            <span>PLC Troubleshooting</span>
-                            <span>WinCC</span>
-                            <span>SCADA</span>
-                            <span>HMI</span>
-                            <span>ABB Drives</span>
-                            <span>Siemens Drives</span>
-                            <span>Industrial Control</span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Steel Plant -->
-
-                    <div class="skill-category">
-
-                        <div class="skill-category-header">
-
-                            <span class="skill-number">03</span>
-
-                            <h3>Steel Plant Systems</h3>
-
-                        </div>
-
-                        <div class="skill-items">
-
-                            <span>Induction Furnace</span>
-                            <span>35 Ton IF</span>
-                            <span>LRF</span>
-                            <span>Furnace Auxiliaries</span>
-                            <span>Cooling Systems</span>
-                            <span>WTP</span>
-                            <span>Billet Production</span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Crane -->
-
-                    <div class="skill-category">
-
-                        <div class="skill-category-header">
-
-                            <span class="skill-number">04</span>
-
-                            <h3>EOT Crane</h3>
-
-                        </div>
-
-                        <div class="skill-items">
-
-                            <span>75/30 Ton EOT</span>
-                            <span>40/15 Ton EOT</span>
-                            <span>15/15 Ton EOT</span>
-                            <span>Crane Control</span>
-                            <span>Magnet Systems</span>
-                            <span>Slip Ring</span>
-                            <span>Maintenance</span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Testing -->
-
-                    <div class="skill-category">
-
-                        <div class="skill-category-header">
-
-                            <span class="skill-number">05</span>
-
-                            <h3>Testing & Diagnostics</h3>
-
-                        </div>
-
-                        <div class="skill-items">
-
-                            <span>BDV Test</span>
-                            <span>Tan Delta</span>
-                            <span>Moisture Test</span>
-                            <span>Oil Testing</span>
-                            <span>Oil Purification</span>
-                            <span>Electrical Troubleshooting</span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Safety -->
-
-                    <div class="skill-category">
-
-                        <div class="skill-category-header">
-
-                            <span class="skill-number">06</span>
-
-                            <h3>Safety & Maintenance</h3>
-
-                        </div>
-
-                        <div class="skill-items">
-
-                            <span>LOTO</span>
-                            <span>Preventive Maintenance</span>
-                            <span>Predictive Maintenance</span>
-                            <span>Breakdown Maintenance</span>
-                            <span>Root Cause Analysis</span>
-                            <span>Shift Management</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             PROJECTS SECTION
-        ========================== -->
-
-        <section class="projects section" id="projects">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-number">06</span>
-
-                    <div>
-                        <p class="section-label">PROJECTS</p>
-
-                        <h2>
-                            Projects & Commissioning Experience.
-                        </h2>
-                    </div>
-
-                </div>
-
-
-                <div class="projects-grid">
-
-
-                    <!-- Project 01 -->
-
-                    <article class="project-card">
-
-                        <div class="project-top">
-
-                            <span class="project-number">
-                                01
-                            </span>
-
-                            <span class="project-type">
-                                Commissioning
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            35 Ton Induction Furnace & LRF
-                        </h3>
-
-                        <p>
-                            Electrical erection and commissioning
-                            support for Phase-2 35 Ton Induction Furnace
-                            and Ladle Refining Furnace systems for billet
-                            production.
-                        </p>
-
-                        <div class="project-tags">
-
-                            <span>Induction Furnace</span>
-                            <span>LRF</span>
-                            <span>HV</span>
-                            <span>Commissioning</span>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Project 02 -->
-
-                    <article class="project-card">
-
-                        <div class="project-top">
-
-                            <span class="project-number">
-                                02
-                            </span>
-
-                            <span class="project-type">
-                                EOT Crane
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            EOT Crane Installation
-                        </h3>
-
-                        <p>
-                            Installation and commissioning support for
-                            multiple China WEIHUA EOT cranes including
-                            75/30T, 40/15T and 15/15T crane systems.
-                        </p>
-
-                        <div class="project-tags">
-
-                            <span>WEIHUA</span>
-                            <span>75/30T</span>
-                            <span>40/15T</span>
-                            <span>15/15T</span>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Project 03 -->
-
-                    <article class="project-card">
-
-                        <div class="project-top">
-
-                            <span class="project-number">
-                                03
-                            </span>
-
-                            <span class="project-type">
-                                Automation
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            PLC & SCADA Systems
-                        </h3>
-
-                        <p>
-                            Industrial automation troubleshooting and
-                            maintenance involving Siemens SIMATIC S7,
-                            WinCC, HMI, SCADA and industrial drives.
-                        </p>
-
-                        <div class="project-tags">
-
-                            <span>Siemens</span>
-                            <span>SIMATIC S7</span>
-                            <span>WinCC</span>
-                            <span>SCADA</span>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Project 04 -->
-
-                    <article class="project-card">
-
-                        <div class="project-top">
-
-                            <span class="project-number">
-                                04
-                            </span>
-
-                            <span class="project-type">
-                                Electrical Testing
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Transformer Diagnostic Testing
-                        </h3>
-
-                        <p>
-                            Electrical testing and condition monitoring
-                            including BDV, Tan Delta and moisture testing,
-                            along with transformer oil purification.
-                        </p>
-
-                        <div class="project-tags">
-
-                            <span>BDV</span>
-                            <span>Tan Delta</span>
-                            <span>Oil Test</span>
-                            <span>Oil Purifier</span>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Project 05 -->
-
-                    <article class="project-card">
-
-                        <div class="project-top">
-
-                            <span class="project-number">
-                                05
-                            </span>
-
-                            <span class="project-type">
-                                Microgrid
-                            </span>
-
-                        </div>                       
-    <h3>
-    Smart Hybrid Solar-Wind Microgrid
-    </h3>
-
-    <p>
-    Academic final-year project focused on reliable off-grid
-    electrification using an integrated renewable energy system
-    combining solar PV, wind power generation, battery energy
-    storage and a hybrid inverter. HOMER Pro was used for
-    microgrid modeling and energy system analysis.
-</p>
-
-<div class="project-tags">
-    <span>Solar PV</span>
-    <span>Wind Energy</span>
-    <span>Battery Storage</span>
-    <span>Hybrid Inverter</span>
-    <span>HOMER Pro</span>
-    
-</div>
-
-                    </article>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             EDUCATION SECTION
-        ========================== -->
-
-        <section class="education section" id="education">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-number">07</span>
-
-                    <div>
-                        <p class="section-label">
-                            EDUCATION
-                        </p>
-
-                        <h2>
-                        Education Qualification
-                        </h2>
-                    </div>
-
-                </div>
-
-
-                <div class="education-grid">
-
-
-                    <!-- BSc -->
-
-                    <article class="education-card">
-
-                        <span class="education-year">
-                            2022 — 2026
-                        </span>
-
-                        <h3>
-                            Bachelor of Science in Electrical
-                            & Electronic Engineering
-                        </h3>
-
-                        <p class="institution">
-                            Port City International University
-                        </p>
-
-                        <div class="education-result">
-                            <span>CGPA</span>
-                            <strong>3.74 out of 4.00</strong>
-                        </div>
-
-                    </article>
-
-
-                    <!-- Diploma -->
-
-                    <article class="education-card">
-
-                        <span class="education-year">
-                            2011 — 2015
-                        </span>
-
-                        <h3>
-                            Diploma in Electrical Engineering
-                        </h3>
-
-                        <p class="institution">
-                            Chittagong Polytechnic Institute
-                        </p>
-
-                        <div class="education-result">
-                            <span>CGPA</span>
-                            <strong>3.02 out of 4.00</strong>
-                        </div>
-
-                    </article>
-
-
-                    <!-- Dakhil -->
-
-                    <article class="education-card">
-
-                        <span class="education-year">
-                            Secondary Education
-                        </span>
-
-                        <h3>
-                            Dakhil — Science
-                        </h3>
-
-                        <p class="institution">
-                            Patenga Islamia Fazil Madrasah
-                        </p>
-
-                        <div class="education-result">
-                            <span>GPA</span>
-                            <strong>5.00 out of 5.00</strong>
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             CORE EXPERTISE
-        ========================== -->
-
-        <section class="expertise section">
-
-            <div class="container">
-
-                <div class="expertise-box">
-
-                    <div class="expertise-content">
-
-                        <p class="section-label">
-                            CORE EXPERTISE
-                        </p>
-
-                        <h2>
-                            Keeping electrical systems
-                            reliable when production
-                            cannot stop.
-                        </h2>
-
-                        <p>
-                            From high-voltage equipment and furnace
-                            systems to automation, cranes and utilities,
-                            my focus is practical troubleshooting,
-                            preventive maintenance and dependable
-                            plant operation.
-                        </p>
-
-                    </div>
-
-
-                    <div class="expertise-list">
-
-                        <div class="expertise-item">
-                            <span>01</span>
-                            <strong>Electrical Maintenance</strong>
-                        </div>
-
-                        <div class="expertise-item">
-                            <span>02</span>
-                            <strong>Automation & PLC</strong>
-                        </div>
-
-                        <div class="expertise-item">
-                            <span>03</span>
-                            <strong>HV & Power Systems</strong>
-                        </div>
-
-                        <div class="expertise-item">
-                            <span>04</span>
-                            <strong>Industrial Commissioning</strong>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-<!-- =========================
-     CONTACT / SOCIAL MEDIA
-========================== -->
-
-<section class="contact section" id="contact">
-
-    <div class="social-shape social-shape-top"></div>
-    <div class="social-shape social-shape-bottom"></div>
-
-    <div class="container social-container">
-
-        <p class="social-eyebrow">LET'S CONNECT</p>
-
-        <h2 class="social-title">
-            Follow me on <span>Social Media</span>
-        </h2>
-
-        <p class="social-description">
-            Let's connect and stay in touch.
-            Feel free to reach out for professional opportunities.
-        </p>
-
-        <div class="social-icons">
-
-            <!-- LINKEDIN -->
-            <a class="social-icon linkedin"
-               href="https://www.linkedin.com/in/azadshifuddin"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="LinkedIn profile">
-
-                <span class="linkedin-logo" aria-hidden="true">
-                    in
-                </span>
-
-            </a>
-
-            <!-- FACEBOOK -->
-            <a class="social-icon facebook"
-               href="https://www.facebook.com/AzadShifuddin"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Facebook profile">
-
-                <span class="facebook-logo" aria-hidden="true">
-                    f
-                </span>
-
-            </a>
-            
-            <!-- INSTAGRAM -->
-        <a class="social-icon instagram"
-           href="https://www.instagram.com/azad_shifuddin"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Instagram profile">
-
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"/>
-
-        <circle cx="12" cy="12" r="4"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"/>
-
-        <circle cx="17.5" cy="6.5" r="1.2"
-                fill="currentColor"/>
-    </svg>
-
-</a>
-            
-            <!-- YOUTUBE -->
-<a class="social-icon youtube"
-   href="https://www.youtube.com/azadshifuddin"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="YouTube channel">
-
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path
-            d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"
-            fill="currentColor"/>
-    </svg>
-
-</a>
-
-            <!-- X / TWITTER -->
-            <a class="social-icon x-twitter"
-               href="https://x.com/AzadShifuddin"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="X profile">
-
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                        d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-7.4L5.5 22H2.3l7.3-8.4L1.8 2h6.5l4.4 6.8L18.9 2Zm-1.1 17.9h1.7L7.3 4H5.5l12.3 15.9Z"
-                        fill="currentColor"/>
-                </svg>
-
-            </a>
-
-        </div>
-
-        <p class="social-footer">
-            Electrical &amp; Automation Engineer
-            <span>·</span>
-            Azad Shifuddin
-        </p>
-
-    </div>
-
-</section>
-
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="footer">
-
-        <div class="container footer-content">
-
-            <div class="footer-brand">
-
-                <a href="#home" class="logo">
-                    <span>AZAD</span>
-                    <small>SHIFUDDIN</small>
-                </a>
-
-                <p>
-                    Electrical & Automation Engineer
-                </p>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-
-            </div>
-
-
-            <div class="footer-bottom">
-
-                <p>
-                    © <span id="currentYear"></span>
-                    Azad Shifuddin.
-                    All rights reserved.
-                </p>
-
-              
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
-    <!-- =========================
-         BACK TO TOP
-    ========================== -->
-
-    <button class="back-to-top"
-            id="backToTop"
-            aria-label="Back to top">
-
-        ↑
-
-    </button>
-
-
-    <!-- Main JavaScript -->
-    <script src="script.js"></script>
-
-</body>
-</html>
+                            <span>PLC
