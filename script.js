@@ -1,7 +1,7 @@
-
+```javascript
 /* =========================================================
    AZAD ENGINEER PORTFOLIO
-   Main JavaScript
+   Complete Main JavaScript
    ========================================================= */
 
 "use strict";
@@ -53,6 +53,10 @@ function toggleMobileMenu() {
         "aria-label",
         isOpen ? "Close navigation menu" : "Open navigation menu"
     );
+
+    if (isOpen) {
+        closeContactPopup();
+    }
 }
 
 if (menuToggle && navMenu) {
@@ -82,7 +86,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
-/* Close mobile menu when switching to desktop layout */
+/* Close menu when switching to desktop layout */
 
 window.addEventListener("resize", () => {
     if (window.innerWidth > 1024) {
@@ -104,9 +108,7 @@ function handleHeaderScroll() {
    04. ACTIVE NAVIGATION
    ========================================================= */
 
-const sections = document.querySelectorAll(
-    "main section[id]"
-);
+const sections = document.querySelectorAll("main section[id]");
 
 function updateActiveNavigation() {
     if (!navLinks.length || !sections.length) return;
@@ -115,7 +117,9 @@ function updateActiveNavigation() {
     let currentSection = "";
 
     sections.forEach((section) => {
-        const top = section.offsetTop;
+        const top =
+            section.getBoundingClientRect().top + window.scrollY;
+
         const bottom = top + section.offsetHeight;
 
         if (marker >= top && marker < bottom) {
@@ -186,7 +190,7 @@ if (
             });
         },
         {
-            threshold: 0.10,
+            threshold: 0.1,
             rootMargin: "0px 0px -35px 0px"
         }
     );
@@ -208,9 +212,11 @@ if (
 function openContactPopup() {
     if (!floatingContact || !contactToggle) return;
 
-    floatingContact.classList.add("active");
+    closeMobileMenu();
 
+    floatingContact.classList.add("active");
     floatingContact.setAttribute("aria-hidden", "false");
+
     contactToggle.setAttribute("aria-expanded", "true");
 }
 
@@ -218,8 +224,8 @@ function closeContactPopup() {
     if (!floatingContact || !contactToggle) return;
 
     floatingContact.classList.remove("active");
-
     floatingContact.setAttribute("aria-hidden", "true");
+
     contactToggle.setAttribute("aria-expanded", "false");
 }
 
@@ -241,8 +247,6 @@ if (contactToggle && floatingContact) {
         toggleContactPopup();
     });
 
-    /* Close when clicking outside the popup */
-
     floatingContact.addEventListener("click", (event) => {
         event.stopPropagation();
     });
@@ -257,9 +261,11 @@ if (contactToggle && floatingContact) {
         }
     });
 
-    /* Set the initial accessibility state */
+    /* Initial accessibility state */
 
+    floatingContact.classList.remove("active");
     floatingContact.setAttribute("aria-hidden", "true");
+
     contactToggle.setAttribute("aria-expanded", "false");
 }
 
@@ -302,6 +308,12 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             top: Math.max(0, targetPosition),
             behavior: prefersReducedMotion.matches ? "auto" : "smooth"
         });
+
+        /* Update the URL hash without triggering another jump */
+
+        if (window.location.hash !== targetId) {
+            history.replaceState(null, "", targetId);
+        }
     });
 });
 
@@ -336,8 +348,8 @@ if (profileImage) {
    ========================================================= */
 
 /*
-   cv.pdf is in the same folder as index.html.
-   Keep href="cv.pdf" in the HTML.
+   Keep cv.pdf in the same folder as index.html.
+   HTML link: href="cv.pdf"
 */
 
 document.querySelectorAll('a[href="cv.pdf"]').forEach((link) => {
@@ -358,7 +370,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 /* =========================================================
-   13. PAGE LOAD AND SCROLL EVENTS
+   13. SCROLL AND RESIZE HANDLING
    ========================================================= */
 
 let scrollTicking = false;
@@ -377,31 +389,39 @@ function handleScroll() {
     });
 }
 
-window.addEventListener("scroll", handleScroll, { passive: true });
+window.addEventListener("scroll", handleScroll, {
+    passive: true
+});
 
 window.addEventListener("resize", () => {
     updateActiveNavigation();
 });
 
-window.addEventListener("load", () => {
+/* =========================================================
+   14. INITIAL PAGE STATE
+   ========================================================= */
+
+function initializePortfolio() {
     document.body.classList.add("page-loaded");
 
     handleHeaderScroll();
     handleBackToTop();
     updateActiveNavigation();
-});
+}
 
-/* Initial state */
-
-handleHeaderScroll();
-handleBackToTop();
-updateActiveNavigation();
+if (document.readyState === "complete") {
+    initializePortfolio();
+} else {
+    window.addEventListener("load", initializePortfolio, {
+        once: true
+    });
+}
 
 /* =========================================================
-   14. REDUCED MOTION SUPPORT
+   15. REDUCED MOTION SUPPORT
    ========================================================= */
 
 if (prefersReducedMotion.matches) {
     document.documentElement.style.scrollBehavior = "auto";
 }
-
+```
