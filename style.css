@@ -2709,6 +2709,27 @@ body {
     box-shadow: 0 8px 20px rgba(214, 41, 118, 0.3);
 }
 
+/* YOUTUBE SOCIAL ICON */
+.social-icon.youtube {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: #ff0000;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.social-icon.youtube svg {
+    width: 24px;
+    height: 24px;
+}
+
+.social-icon.youtube:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+}
+
 
 /* X */
 .contact .social-icons .social-icon.x-twitter {
