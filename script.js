@@ -1,418 +1,204 @@
 /* =========================================================
-   AZAD ENGINEER PORTFOLIO
-   Complete Main JavaScript — Fixed Version
+   AZAD SHIFUDDIN PORTFOLIO
+   Main JavaScript — responsive navigation and interactions
    ========================================================= */
+(() => {
+    "use strict";
 
-"use strict";
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-/* =========================================================
-   01. DOM ELEMENTS
-   ========================================================= */
+    const header = $("#header");
+    const menuToggle = $("#menuToggle");
+    const navMenu = $("#navMenu");
+    const navLinks = $$(".nav-link");
+    const backToTop = $("#backToTop");
+    const currentYear = $("#currentYear");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const header = document.getElementById("header");
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
-const navLinks = document.querySelectorAll(".nav-link");
-const backToTop = document.getElementById("backToTop");
-const currentYear = document.getElementById("currentYear");
+    // Mark JS as initialized; CSS uses this class to enable reveal animations safely.
+    document.documentElement.classList.add("js-enabled");
 
-const contactToggle = document.getElementById("contactToggle");
-const floatingContact = document.getElementById("floatingContact");
-
-const profileImage = document.querySelector(".profile-image");
-
-const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-);
-
-/* =========================================================
-   02. MOBILE NAVIGATION
-   ========================================================= */
-
-function closeMobileMenu() {
-    if (!navMenu || !menuToggle) return;
-
-    navMenu.classList.remove("active");
-    menuToggle.classList.remove("open");
-
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation menu");
-}
-
-function toggleMobileMenu() {
-    if (!navMenu || !menuToggle) return;
-
-    const isOpen = !navMenu.classList.contains("active");
-
-    navMenu.classList.toggle("active", isOpen);
-    menuToggle.classList.toggle("open", isOpen);
-
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-    );
-
-    if (isOpen) {
-        closeContactPopup();
+    // Footer year.
+    if (currentYear) {
+        currentYear.textContent = String(new Date().getFullYear());
     }
-}
 
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", (event) => {
-        event.stopPropagation();
-        toggleMobileMenu();
-    });
-}
+    // Mobile navigation.
+    const setMenuOpen = (open) => {
+        if (!menuToggle || !navMenu) return;
+        navMenu.classList.toggle("active", open);
+        menuToggle.classList.toggle("open", open);
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+        document.body.classList.toggle("menu-open", open);
+    };
 
-navLinks.forEach((link) => {
-    link.addEventListener("click", closeMobileMenu);
-});
-
-/* =========================================================
-   03. HEADER SCROLL EFFECT
-   ========================================================= */
-
-function handleHeaderScroll() {
-    if (!header) return;
-
-    header.classList.toggle("scrolled", window.scrollY > 40);
-}
-
-/* =========================================================
-   04. ACTIVE NAVIGATION
-   ========================================================= */
-
-const sections = document.querySelectorAll("main section[id]");
-
-function updateActiveNavigation() {
-    if (!navLinks.length || !sections.length) return;
-
-    const marker = window.scrollY + window.innerHeight * 0.35;
-    let currentSection = "";
-
-    sections.forEach((section) => {
-        const top =
-            section.getBoundingClientRect().top + window.scrollY;
-
-        const bottom = top + section.offsetHeight;
-
-        if (marker >= top && marker < bottom) {
-            currentSection = section.id;
-        }
-    });
-
-    navLinks.forEach((link) => {
-        const isActive =
-            link.getAttribute("href") === `#${currentSection}`;
-
-        link.classList.toggle("active", isActive);
-
-        if (isActive) {
-            link.setAttribute("aria-current", "location");
-        } else {
-            link.removeAttribute("aria-current");
-        }
-    });
-}
-
-/* =========================================================
-   05. BACK TO TOP
-   ========================================================= */
-
-function handleBackToTop() {
-    if (!backToTop) return;
-
-    backToTop.classList.toggle("show", window.scrollY > 600);
-}
-
-if (backToTop) {
-    backToTop.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", (event) => {
+            event.stopPropagation();
+            setMenuOpen(!navMenu.classList.contains("active"));
         });
-    });
-}
 
-/* =========================================================
-   06. SCROLL REVEAL ANIMATION
-   ========================================================= */
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => setMenuOpen(false));
+        });
 
-const revealElements = document.querySelectorAll(
-    ".section-heading, " +
-    ".about-text, " +
-    ".highlight-card, " +
-    ".timeline-item, " +
-    ".skill-category, " +
-    ".project-card, " +
-    ".education-card, " +
-    ".expertise-box, " +
-    ".social-container"
-);
+        document.addEventListener("click", (event) => {
+            if (!navMenu.classList.contains("active")) return;
+            if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        });
 
-if (
-    "IntersectionObserver" in window &&
-    !prefersReducedMotion.matches
-) {
-    const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") setMenuOpen(false);
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 760) setMenuOpen(false);
+        });
+    }
+
+    // Header style and back-to-top visibility.
+    const updateScrollUI = () => {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        if (header) header.classList.toggle("scrolled", y > 20);
+        if (backToTop) {
+            backToTop.classList.toggle("show", y > 450);
+            backToTop.setAttribute("aria-hidden", String(y <= 450));
+        }
+    };
+
+    window.addEventListener("scroll", updateScrollUI, { passive: true });
+    updateScrollUI();
+
+    if (backToTop) {
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+        });
+    }
+
+    // Active navigation link based on visible section.
+    const sections = $$("main section[id]");
+    if ("IntersectionObserver" in window && sections.length) {
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
-                }
+                if (!entry.isIntersecting) return;
+                const activeId = entry.target.id;
+                navLinks.forEach((link) => {
+                    const active = link.getAttribute("href") === `#${activeId}`;
+                    link.classList.toggle("active", active);
+                    if (active) link.setAttribute("aria-current", "location");
+                    else link.removeAttribute("aria-current");
+                });
             });
-        },
-        {
-            threshold: 0.1,
-            rootMargin: "0px 0px -35px 0px"
-        }
-    );
-
-    revealElements.forEach((element) => {
-        element.classList.add("reveal");
-        revealObserver.observe(element);
-    });
-} else {
-    revealElements.forEach((element) => {
-        element.classList.add("visible");
-    });
-}
-
-/* =========================================================
-   07. CONTACT POPUP — FIXED
-   ========================================================= */
-
-function openContactPopup() {
-    if (!floatingContact || !contactToggle) return;
-
-    closeMobileMenu();
-
-    floatingContact.classList.add("active");
-    floatingContact.setAttribute("aria-hidden", "false");
-
-    contactToggle.setAttribute("aria-expanded", "true");
-}
-
-function closeContactPopup() {
-    if (!floatingContact || !contactToggle) return;
-
-    floatingContact.classList.remove("active");
-    floatingContact.setAttribute("aria-hidden", "true");
-
-    contactToggle.setAttribute("aria-expanded", "false");
-}
-
-function toggleContactPopup() {
-    if (!floatingContact || !contactToggle) return;
-
-    const isOpen = floatingContact.classList.contains("active");
-
-    if (isOpen) {
-        closeContactPopup();
-    } else {
-        openContactPopup();
-    }
-}
-
-if (contactToggle && floatingContact) {
-    /* Ensure the button does not submit a form */
-
-    if (contactToggle.tagName === "BUTTON") {
-        contactToggle.setAttribute("type", "button");
-    }
-
-    contactToggle.setAttribute("aria-controls", "floatingContact");
-    contactToggle.setAttribute("aria-haspopup", "true");
-
-    /* Set initial state */
-
-    floatingContact.classList.remove("active");
-    floatingContact.setAttribute("aria-hidden", "true");
-    contactToggle.setAttribute("aria-expanded", "false");
-
-    /* Open and close using Contact Me */
-
-    contactToggle.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        toggleContactPopup();
-    });
-
-    /* Clicking inside the popup must not close it */
-
-    floatingContact.addEventListener("click", (event) => {
-        event.stopPropagation();
-    });
-
-    /* Close when clicking anywhere outside */
-
-    document.addEventListener("click", (event) => {
-        if (
-            floatingContact.classList.contains("active") &&
-            !floatingContact.contains(event.target) &&
-            !contactToggle.contains(event.target)
-        ) {
-            closeContactPopup();
-        }
-    });
-} else {
-    console.warn(
-        "Contact popup not initialized. Check #contactToggle and #floatingContact in index.html."
-    );
-}
-
-/* =========================================================
-   08. CURRENT YEAR
-   ========================================================= */
-
-if (currentYear) {
-    currentYear.textContent = new Date().getFullYear();
-}
-
-/* =========================================================
-   09. SMOOTH ANCHOR SCROLL
-   ========================================================= */
-
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (event) {
-        const targetId = this.getAttribute("href");
-
-        if (!targetId || targetId === "#") return;
-
-        /* Do not intercept the Contact Me popup button */
-
-        if (this.id === "contactToggle") return;
-
-        const target = document.getElementById(targetId.slice(1));
-
-        if (!target) return;
-
-        event.preventDefault();
-
-        closeMobileMenu();
-
-        const headerHeight = header
-            ? header.getBoundingClientRect().height
-            : 0;
-
-        const targetPosition =
-            target.getBoundingClientRect().top +
-            window.scrollY -
-            headerHeight;
-
-        window.scrollTo({
-            top: Math.max(0, targetPosition),
-            behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+        }, {
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: 0
         });
 
-        if (window.location.hash !== targetId) {
-            history.replaceState(null, "", targetId);
-        }
-    });
-});
-
-/* =========================================================
-   10. PROFILE IMAGE FALLBACK
-   ========================================================= */
-
-function handleProfileImageError() {
-    if (!profileImage) return;
-
-    profileImage.style.display = "none";
-
-    if (profileImage.parentElement) {
-        profileImage.parentElement.classList.add("image-missing");
+        sections.forEach((section) => sectionObserver.observe(section));
     }
-}
 
-if (profileImage) {
-    profileImage.addEventListener("error", handleProfileImageError);
+    // Scroll reveal. If IntersectionObserver is unsupported, show content immediately.
+    const revealTargets = $$(
+        ".section-heading, .hero-content, .hero-visual, .highlight-card, " +
+        ".timeline-item, .skill-category, .project-card, .education-card, " +
+        ".expertise-box, .social-container"
+    );
 
-    if (profileImage.complete && profileImage.naturalWidth === 0) {
-        handleProfileImageError();
+    revealTargets.forEach((element) => element.classList.add("reveal"));
+
+    if ("IntersectionObserver" in window && !reducedMotion) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.08,
+            rootMargin: "0px 0px -35px 0px"
+        });
+
+        revealTargets.forEach((element) => revealObserver.observe(element));
+    } else {
+        revealTargets.forEach((element) => element.classList.add("visible"));
     }
-}
 
-/* =========================================================
-   11. CV LINK
-   ========================================================= */
-
-document.querySelectorAll('a[href="cv.pdf"]').forEach((link) => {
-    link.addEventListener("click", () => {
-        console.log("CV link clicked: cv.pdf");
+    // Smooth in-page navigation fallback for browsers that ignore CSS scroll behavior.
+    $$('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const href = link.getAttribute("href");
+            if (!href || href === "#") return;
+            const target = $(href);
+            if (!target) return;
+            event.preventDefault();
+            target.scrollIntoView({
+                behavior: reducedMotion ? "auto" : "smooth",
+                block: "start"
+            });
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, "", href);
+            }
+        });
     });
-});
 
-/* =========================================================
-   12. KEYBOARD ACCESSIBILITY
-   ========================================================= */
+    // Keep a broken profile image from showing a broken-image icon.
+    const profileImage = $(".profile-image");
+    if (profileImage) {
+        profileImage.addEventListener("error", () => {
+            profileImage.style.display = "none";
+            const wrapper = profileImage.closest(".profile-image-wrapper");
+            if (wrapper) {
+                wrapper.setAttribute("role", "img");
+                wrapper.setAttribute("aria-label", "Profile image unavailable");
+            }
+        }, { once: true });
+    }
 
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeMobileMenu();
+    // CV link is a regular local download; avoid intercepting it with JavaScript.
+
+    // Contact popup. Kept in this IIFE to avoid duplicate event handlers.
+    const contactToggle = $("#contactToggle");
+    const floatingContact = $("#floatingContact");
+    const contactClose = $("#contactClose");
+
+    const closeContactPopup = () => {
+        if (!contactToggle || !floatingContact) return;
+        floatingContact.classList.remove("active");
+        floatingContact.setAttribute("aria-hidden", "true");
+        contactToggle.setAttribute("aria-expanded", "false");
+    };
+
+    if (contactToggle && floatingContact) {
+        contactToggle.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const shouldOpen = !floatingContact.classList.contains("active");
+            if (shouldOpen) {
+                setMenuOpen(false);
+                floatingContact.classList.add("active");
+                floatingContact.setAttribute("aria-hidden", "false");
+                contactToggle.setAttribute("aria-expanded", "true");
+            } else {
+                closeContactPopup();
+            }
+        });
+
+        floatingContact.addEventListener("click", (event) => event.stopPropagation());
+        document.addEventListener("click", (event) => {
+            if (floatingContact.classList.contains("active") &&
+                !floatingContact.contains(event.target) &&
+                !contactToggle.contains(event.target)) {
+                closeContactPopup();
+            }
+        });
+        if (contactClose) contactClose.addEventListener("click", closeContactPopup);
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeContactPopup();
+        });
         closeContactPopup();
     }
-});
-
-/* =========================================================
-   13. SCROLL AND RESIZE HANDLING
-   ========================================================= */
-
-let scrollTicking = false;
-
-function handleScroll() {
-    if (scrollTicking) return;
-
-    scrollTicking = true;
-
-    window.requestAnimationFrame(() => {
-        handleHeaderScroll();
-        handleBackToTop();
-        updateActiveNavigation();
-
-        scrollTicking = false;
-    });
-}
-
-window.addEventListener("scroll", handleScroll, {
-    passive: true
-});
-
-window.addEventListener("resize", () => {
-    updateActiveNavigation();
-
-    if (window.innerWidth > 1024) {
-        closeMobileMenu();
-    }
-});
-
-/* =========================================================
-   14. INITIAL PAGE STATE
-   ========================================================= */
-
-function initializePortfolio() {
-    document.body.classList.add("page-loaded");
-
-    handleHeaderScroll();
-    handleBackToTop();
-    updateActiveNavigation();
-}
-
-if (document.readyState === "complete") {
-    initializePortfolio();
-} else {
-    window.addEventListener("load", initializePortfolio, {
-        once: true
-    });
-}
-
-/* =========================================================
-   15. REDUCED MOTION SUPPORT
-   ========================================================= */
-
-if (prefersReducedMotion.matches) {
-    document.documentElement.style.scrollBehavior = "auto";
-}
+})();
