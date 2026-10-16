@@ -3456,3 +3456,13 @@ body {
         border-radius: 16px !important;
     }
 }
+
+.social-icon i {
+  font-size: 22px;
+  line-height: 1;
+  color: currentColor;
+}
+
+/* Old text-logo styles are no longer needed */
+.linkedin-logo,
+.facebook-logo { display: none; }
