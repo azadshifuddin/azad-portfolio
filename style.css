@@ -308,7 +308,9 @@ ul {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
     gap: 50px;
     align-items: center;
-    width: 100%;
+    /* same width as .container so the hero lines up with the navbar */
+    width: min(var(--container-width), calc(100% - 48px));
+    margin: 0 auto;
 }
 
 .hero-content {
@@ -1504,6 +1506,7 @@ ul {
 
     .hero-grid {
         gap: 45px;
+        width: min(var(--container-width), calc(100% - 30px));
     }
 
     .hero-content {
