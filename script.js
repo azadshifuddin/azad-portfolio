@@ -538,3 +538,78 @@ if (prefersReducedMotion.matches) {
         if (popup.classList.contains('show')) placePopup();
     }, { passive: true });
 })();
+
+/* =========================
+   FLOATING CONTACT POPUP
+========================= */
+(function () {
+    const toggleBtn = document.getElementById('contactToggle');
+    const popup = document.getElementById('floatingContact');
+    if (!toggleBtn || !popup) return;
+
+    let isOpen = false;
+
+    function placePopup() {
+        const r = toggleBtn.getBoundingClientRect();
+        const pw = popup.offsetWidth;
+        const ph = popup.offsetHeight;
+        const gap = 12;
+
+        let left = r.left + r.width / 2 - pw / 2;
+        left = Math.max(10, Math.min(left, window.innerWidth - pw - 10));
+
+        let top = r.top - ph - gap;
+        if (top < 10) top = r.bottom + gap;
+
+        popup.style.left = left + 'px';
+        popup.style.top = top + 'px';
+    }
+
+    function openPopup() {
+        isOpen = true;
+        popup.classList.add('show', 'active');
+        popup.style.position = 'fixed';
+        popup.style.right = 'auto';
+        popup.style.bottom = 'auto';
+        popup.style.zIndex = '10000';
+        popup.style.opacity = '1';
+        popup.style.visibility = 'visible';
+        popup.style.pointerEvents = 'auto';
+        popup.style.transform = 'none';
+        placePopup();
+        popup.setAttribute('aria-hidden', 'false');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closePopup() {
+        isOpen = false;
+        popup.classList.remove('show', 'active');
+        popup.style.opacity = '0';
+        popup.style.visibility = 'hidden';
+        popup.style.pointerEvents = 'none';
+        popup.setAttribute('aria-hidden', 'true');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    toggleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        isOpen ? closePopup() : openPopup();
+    });
+
+    document.addEventListener('click', function (e) {
+        if (isOpen && !popup.contains(e.target)) closePopup();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isOpen) closePopup();
+    });
+
+    window.addEventListener('resize', function () {
+        if (isOpen) placePopup();
+    });
+
+    window.addEventListener('scroll', function () {
+        if (isOpen) placePopup();
+    }, { passive: true });
+})();
+
