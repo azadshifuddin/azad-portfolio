@@ -479,7 +479,6 @@ if (prefersReducedMotion.matches) {
 
 }
 
-
 /* =========================
    FLOATING CONTACT POPUP
 ========================= */
@@ -487,6 +486,88 @@ if (prefersReducedMotion.matches) {
     const toggleBtn = document.getElementById('contactToggle');
     const popup = document.getElementById('floatingContact');
     if (!toggleBtn || !popup) return;
+
+    // popup-এর design JS নিজেই যোগ করবে
+    const style = document.createElement('style');
+    style.textContent = `
+    #floatingContact {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: auto;
+        bottom: auto;
+        z-index: 10000;
+        width: 290px;
+        max-width: calc(100vw - 20px);
+        max-height: 60vh;
+        overflow-y: auto;
+        background: #0d1523;
+        color: #f4f7fc;
+        border: 1px solid rgba(56, 217, 255, 0.38);
+        border-radius: 16px;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+    }
+    #floatingContact.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+    #floatingContact .contact-popup-header {
+        padding: 12px 16px 10px;
+        text-align: center;
+        background: #080d17;
+        border-bottom: 1px solid rgba(56, 217, 255, 0.2);
+    }
+    #floatingContact .contact-handle {
+        display: block;
+        width: 42px;
+        height: 4px;
+        margin: 0 auto 8px;
+        border-radius: 10px;
+        background: #38d9ff;
+    }
+    #floatingContact .contact-popup-header h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #f4f7fc;
+    }
+    #floatingContact .contact-popup-body {
+        padding: 6px 16px 12px;
+    }
+    #floatingContact .contact-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        color: inherit;
+        text-decoration: none;
+        overflow-wrap: anywhere;
+    }
+    #floatingContact .contact-item:last-child {
+        border-bottom: none;
+    }
+    #floatingContact .contact-label {
+        color: #38d9ff;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    #floatingContact .contact-value {
+        color: #b7c2d0;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    #floatingContact .contact-item:hover .contact-value {
+        color: #38d9ff;
+    }`;
+    document.head.appendChild(style);
 
     let isOpen = false;
 
@@ -508,15 +589,7 @@ if (prefersReducedMotion.matches) {
 
     function openPopup() {
         isOpen = true;
-        popup.classList.add('show', 'active');
-        popup.style.position = 'fixed';
-        popup.style.right = 'auto';
-        popup.style.bottom = 'auto';
-        popup.style.zIndex = '10000';
-        popup.style.opacity = '1';
-        popup.style.visibility = 'visible';
-        popup.style.pointerEvents = 'auto';
-        popup.style.transform = 'none';
+        popup.classList.add('show');
         placePopup();
         popup.setAttribute('aria-hidden', 'false');
         toggleBtn.setAttribute('aria-expanded', 'true');
@@ -524,10 +597,7 @@ if (prefersReducedMotion.matches) {
 
     function closePopup() {
         isOpen = false;
-        popup.classList.remove('show', 'active');
-        popup.style.opacity = '0';
-        popup.style.visibility = 'hidden';
-        popup.style.pointerEvents = 'none';
+        popup.classList.remove('show');
         popup.setAttribute('aria-hidden', 'true');
         toggleBtn.setAttribute('aria-expanded', 'false');
     }
