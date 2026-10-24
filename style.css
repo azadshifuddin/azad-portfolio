@@ -1258,18 +1258,17 @@ ul {
 }
 
 
-/* =========================================================
+(/* =========================================================
    16. FLOATING CONTACT POPUP (dark, compact)
-   Only used if your HTML includes #floatingContact
    ========================================================= */
 
 .floating-contact {
     position: fixed;
-    right: 16px;
-    bottom: 85px;
+    top: 0;
+    left: 0;
     z-index: 10000;
     width: 290px;
-    max-width: calc(100vw - 32px);
+    max-width: calc(100vw - 20px);
     max-height: 55vh;
     overflow-y: auto;
     background: var(--bg-secondary);
@@ -1284,6 +1283,7 @@ ul {
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
 }
 
+.floating-contact.show,
 .floating-contact.active {
     opacity: 1;
     visibility: visible;
@@ -1348,7 +1348,7 @@ ul {
 .contact-item:hover .contact-value {
     color: var(--accent);
 }
-
+}
 
 /* =========================================================
    17. SCROLL REVEAL
@@ -1630,11 +1630,8 @@ ul {
     /* Floating popup */
     .floating-contact {
         width: 280px;
-        max-width: calc(100vw - 28px);
         max-height: 50vh;
-        right: 14px;
-        bottom: 78px;
-        border-radius: 16px;
+      border-radius: 16px;
     }
 }
 
