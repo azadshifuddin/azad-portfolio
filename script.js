@@ -479,39 +479,62 @@ if (prefersReducedMotion.matches) {
         "auto";
 
 }
-// Contact Popup Toggle
-const contactToggle = document.getElementById("contactToggle");
-const floatingContact = document.getElementById("floatingContact");
 
-if (contactToggle && floatingContact) {
+/* =========================
+   FLOATING CONTACT POPUP
+========================= */
+(function () {
+    const toggleBtn = document.getElementById('contactToggle');
+    const popup = document.getElementById('floatingContact');
+    if (!toggleBtn || !popup) return;
 
-    contactToggle.addEventListener("click", function (event) {
-        event.stopPropagation();
+    function placePopup() {
+        const r = toggleBtn.getBoundingClientRect();
+        const pw = popup.offsetWidth;
+        const ph = popup.offsetHeight;
+        const gap = 12;
 
-        const isOpen = floatingContact.classList.toggle("active");
+        let left = r.left + r.width / 2 - pw / 2;
+        left = Math.max(10, Math.min(left, window.innerWidth - pw - 10));
 
-        contactToggle.setAttribute("aria-expanded", String(isOpen));
-        floatingContact.setAttribute("aria-hidden", String(!isOpen));
+        let top = r.top - ph - gap;
+        if (top < 10) top = r.bottom + gap;
+
+        popup.style.left = left + 'px';
+        popup.style.top = top + 'px';
+    }
+
+    function openPopup() {
+        placePopup();
+        popup.classList.add('show');
+        popup.setAttribute('aria-hidden', 'false');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closePopup() {
+        popup.classList.remove('show');
+        popup.setAttribute('aria-hidden', 'true');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    toggleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        popup.classList.contains('show') ? closePopup() : openPopup();
     });
 
-    // Close when clicking outside
-    document.addEventListener("click", function (event) {
-        if (
-            !floatingContact.contains(event.target) &&
-            !contactToggle.contains(event.target)
-        ) {
-            floatingContact.classList.remove("active");
-            contactToggle.setAttribute("aria-expanded", "false");
-            floatingContact.setAttribute("aria-hidden", "true");
-        }
+    document.addEventListener('click', function (e) {
+        if (!popup.contains(e.target)) closePopup();
     });
 
-    // Close with Escape
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            floatingContact.classList.remove("active");
-            contactToggle.setAttribute("aria-expanded", "false");
-            floatingContact.setAttribute("aria-hidden", "true");
-        }
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closePopup();
     });
-}
+
+    window.addEventListener('resize', function () {
+        if (popup.classList.contains('show')) placePopup();
+    });
+
+    window.addEventListener('scroll', function () {
+        if (popup.classList.contains('show')) placePopup();
+    }, { passive: true });
+})();
